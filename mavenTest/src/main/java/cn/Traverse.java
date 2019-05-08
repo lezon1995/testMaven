@@ -26,7 +26,6 @@ public class Traverse {
         System.out.println("文件夹一共" + dirNum);
     }
 
-
     static void traverseFolder2(String path) throws Exception {
         String srcDir = "D:\\taifungbank\\";
         String targetDir = "E:\\taifungbank\\";
