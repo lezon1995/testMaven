@@ -11,16 +11,6 @@ public class Traverse {
     public static void main(String[] args) throws Exception {
 //        String dirName = "D:\\boc\\bankbrain-mini\\src";
         String dirName = "D:\\taifungbank\\bankbrain-mini\\src";
-//        File file = new File(dirName);
-//        for (File f : file.listFiles()) {
-//
-//            if (f.isDirectory()) {
-//
-//            }else {
-//
-//            }
-//
-//        }
         traverseFolder2(dirName);
         System.out.println("文件一共" + fileNum);
         System.out.println("文件夹一共" + dirNum);
