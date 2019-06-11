@@ -2,102 +2,70 @@ package cn.qrcode;
 
 import com.google.zxing.*;
 import com.google.zxing.common.HybridBinarizer;
-import org.apache.commons.lang3.StringUtils;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.EnumMap;
 
 public class QrDecoder {
-    private final MultiFormatReader multiFormatReader;
-//    private final Hashtable<DecodeHintType, Object> hints;
-
-    public QrDecoder() {
-        multiFormatReader = new MultiFormatReader();
-//        multiFormatReader.setHints(hints);
-    }
-
-    public void init() {
-//        hints = new Hashtable<DecodeHintType, Object>(3);
-//        hints.put(DecodeHintType.POSSIBLE_FORMATS, null);
-//        hints.put(DecodeHintType.CHARACTER_SET, null);
-//        hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, null);
-    }
-
-
-    /**
-     * Decode the data within the viewfinder rectangle, and time how long it took. For efficiency,
-     * reuse the same reader objects from one decode to the next.
-     *
-     * @param data   The YUV preview frame.
-     * @param width  The width of the preview frame.
-     * @param height The height of the preview frame.
-     */
-    public String decode(byte[] data, int width, int height) {
-        long start = System.currentTimeMillis();
-        Result rawResult = null;
-
-        //modify here
-        byte[] rotatedData = new byte[data.length];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                rotatedData[x * height + height - y - 1] = data[x + y * width];
-            }
-        }
-        int tmp = width; // Here we are swapping, that's the difference to #11
-        width = height;
-        height = tmp;
-
-        PlanarYUVLuminanceSource source = buildLuminanceSource(rotatedData, width, height);
-        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-        try {
-            rawResult = multiFormatReader.decodeWithState(bitmap);
-        } catch (ReaderException re) {
-            // continue
-        } finally {
-            multiFormatReader.reset();
-        }
-
-        if (rawResult != null) {
+    public static void main(String[] args) throws Exception {
+//        String str = "E:\\qrcode\\2.jpg";
+        String str = "E:\\qrcode\\1.jpg";
+        File file = new File(str);
+        FileInputStream inputStream = new FileInputStream(file);
+        byte[] bytes = new byte[(int) file.length()];
+        inputStream.read(bytes);
+        for (int i = 0; i < 100; i++) {
+            long start = System.currentTimeMillis();
+            String s = decode(bytes);
+            System.out.println(s);
             long end = System.currentTimeMillis();
-            System.out.println("Found barcode" + (end - start) + " ms):\n" + rawResult.toString());
-            System.out.println("Sending decode succeeded message...");
-            handleDecode(rawResult);
-            return rawResult.getText();
-        } else {
-            System.out.println("decode failed...");
+            System.out.println(end - start);
         }
-        return null;
     }
 
-
     /**
-     * A factory method to build the appropriate LuminanceSource object based on the format
-     * of the preview buffers, as described by Camera.Parameters.
+     * 解析二维码图片
      *
-     * @param data   A preview frame.
-     * @param width  The width of the image.
-     * @param height The height of the image.
-     * @return A PlanarYUVLuminanceSource instance.
+     * @param filePath 图片路径
      */
-    public PlanarYUVLuminanceSource buildLuminanceSource(byte[] data, int width, int height) {
-        return new PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height);
-
+    public static String decode(String filePath) throws Exception {
+        if (filePath.length() == 0) {
+            return "二维码图片不存在!";
+        }
+        String content = null;
+        EnumMap<DecodeHintType, Object> hints = new EnumMap<DecodeHintType, Object>(DecodeHintType.class);
+        // 指定编码方式,防止中文乱码
+        hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
+        BufferedImage image = ImageIO.read(new FileInputStream(filePath));
+        LuminanceSource source = new BufferedImageLuminanceSource(image);
+        Binarizer binarizer = new HybridBinarizer(source);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);
+        MultiFormatReader reader = new MultiFormatReader();
+        Result result = reader.decode(binaryBitmap, hints);
+        content = result.getText();
+        return content;
     }
 
-
     /**
-     * Handler scan result
+     * 解析二维码图片
      *
-     * @param result
+     * @param buf 图片字节数组
      */
-    public void handleDecode(Result result) {
-        String resultString = result.getText();
-        //FIXME
-        if (StringUtils.isEmpty(resultString)) {
-            System.out.println("Scan failed!");
-        } else {
-            System.out.println("sssssssssssssssss scan 0 = " + resultString);
-            // 不能使用Intent传递大于40kb的bitmap，可以使用一个单例对象存储这个bitmap
-//            bundle.putParcelable("bitmap", barcode);
-//            Logger.d("saomiao",resultString);
-        }
+    public static String decode(byte[] buf) throws Exception {
+        InputStream inputStream = new ByteArrayInputStream(buf);
+        String content = null;
+        EnumMap<DecodeHintType, Object> hints = new EnumMap<DecodeHintType, Object>(DecodeHintType.class);
+        // 指定编码方式,防止中文乱码
+        hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
+        BufferedImage image = ImageIO.read(inputStream);
+        LuminanceSource source = new BufferedImageLuminanceSource(image);
+        Binarizer binarizer = new HybridBinarizer(source);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);
+        MultiFormatReader reader = new MultiFormatReader();
+        Result result = reader.decode(binaryBitmap, hints);
+        content = result.getText();
+        return content;
     }
 }
