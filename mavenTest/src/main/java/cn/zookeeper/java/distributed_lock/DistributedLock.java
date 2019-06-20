@@ -49,8 +49,9 @@ public class DistributedLock {
             //如果不等于lockId
             SortedSet<String> lessThanLockId = sortedSet.headSet(lockId);
             if (!lessThanLockId.isEmpty()) {
-                //获取比当前lockId小的上一个节点
+                //获取比当前lockId小的上一个节点 其实这个preLockId就是正在被使用的锁的id
                 String preLockId = lessThanLockId.last();
+                //然后给这个正在被使用的锁 添加一个watcher  当这个锁被调用delete,get,set的时候就会触发watch时间
                 zooKeeper.exists(preLockId, new LockWatcher(latch));
 //                latch.await(sessionTimeout, TimeUnit.MILLISECONDS);
                 latch.await();
