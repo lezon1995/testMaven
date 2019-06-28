@@ -1,4 +1,4 @@
-package com.difference;
+package com.reference;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
