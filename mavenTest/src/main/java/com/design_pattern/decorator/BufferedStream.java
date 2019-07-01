@@ -1,7 +1,7 @@
 package com.design_pattern.decorator;
 
-import com.design_pattern.base.Stream;
-import com.design_pattern.decorator.base.DecoratorStream;
+import com.design_pattern.decorator.base.Stream;
+import com.design_pattern.decorator.decorator.DecoratorStream;
 
 public class BufferedStream extends DecoratorStream {
 

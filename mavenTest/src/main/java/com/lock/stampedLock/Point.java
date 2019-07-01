@@ -6,21 +6,21 @@ import java.util.concurrent.locks.StampedLock;
 public class Point {
     private double x = 3;//内部定义表示坐标点
     private double y = 4;//内部定义表示坐标点
-    private final StampedLock s1 = new StampedLock();//定义了StampedLock锁,
+    private final StampedLock stampedLock = new StampedLock();//定义了StampedLock锁,
 
-    void move(double deltaX, double deltaY) {
-        long stamp = s1.writeLock();//这里的含义和distanceFormOrigin方法中 s1.readLock()是类似的
+    private void move(double deltaX, double deltaY) {
+        long stamp = stampedLock.writeLock();//这里的含义和distanceFormOrigin方法中 stampedLock.readLock()是类似的
         try {
             x += deltaX;
             y += deltaY;
         } finally {
-            s1.unlockWrite(stamp);//退出临界区,释放写锁
+            stampedLock.unlockWrite(stamp);//退出临界区,释放写锁
         }
     }
 
-    double distanceFormOrigin() {//只读方法
+    private double distanceFormOrigin() {//只读方法
         //试图尝试一次乐观读 返回一个类似于时间戳的邮戳整数stamp 这个stamp就可以作为这一个所获取的凭证
-        long stamp = s1.tryOptimisticRead();
+        long stamp = stampedLock.tryOptimisticRead();
 
         //读取x和y的值,这时候我们并不确定x和y是否是一致的
         double currentX = x, currentY = y;
@@ -30,16 +30,16 @@ public class Point {
          * 可能被其他线程改写了数据,因此,有可能出现脏读,如果如果出现这种情况,
          * 我们可以像CAS操作那样在一个死循环中一直使用乐观锁,知道成功为止
          */
-        if (!s1.validate(stamp)) {
+        if (!stampedLock.validate(stamp)) {
             //也可以升级锁的级别,这里我们升级乐观锁的级别,
             // 将乐观锁变为悲观锁, 如果当前对象正在被修改,
             // 则读锁的申请可能导致线程挂起.
-            stamp = s1.readLock();
+            stamp = stampedLock.readLock();
             try {
                 currentX = x;
                 currentY = y;
             } finally {
-                s1.unlockRead(stamp);//退出临界区,释放读锁
+                stampedLock.unlockRead(stamp);//退出临界区,释放读锁
             }
         }
         return Math.sqrt(currentX * currentX + currentY * currentY);
@@ -61,12 +61,11 @@ public class Point {
 
         new Thread(new Runnable() {
             public void run() {
-                point.move(1,1);
+                point.move(1, 1);
             }
         }).start();
 
         System.in.read();
-
 
 
     }

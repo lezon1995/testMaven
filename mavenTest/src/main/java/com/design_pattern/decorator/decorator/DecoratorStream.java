@@ -1,6 +1,6 @@
-package com.design_pattern.decorator.base;
+package com.design_pattern.decorator.decorator;
 
-import com.design_pattern.base.Stream;
+import com.design_pattern.decorator.base.Stream;
 
 public class DecoratorStream implements Stream {
 

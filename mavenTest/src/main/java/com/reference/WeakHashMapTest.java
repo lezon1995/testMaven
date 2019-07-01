@@ -11,7 +11,7 @@ public class WeakHashMapTest {
         String b = new String("b");
 
         WeakHashMap<String, String> weakmap = new WeakHashMap<>();
-//        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 //        map.put(a, "aaa");
 //        map.put(b, "bbb");
 

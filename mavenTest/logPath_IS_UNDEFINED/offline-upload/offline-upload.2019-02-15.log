@@ -1,3 +1,0 @@
-2019-02-15 14:52:41 +0800 [INFO] [main] [com.custom.main.App:11] -- logback 成功了
-2019-02-15 14:52:41 +0800 [ERROR] [main] [com.custom.main.App:12] -- logback 成功了
-2019-02-15 14:52:41 +0800 [DEBUG] [main] [com.custom.main.App:13] -- logback 成功了

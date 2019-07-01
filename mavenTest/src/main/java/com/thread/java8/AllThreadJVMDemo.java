@@ -6,6 +6,8 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 
 /**
+ * 查看所有运行的线程
+ *
  * @author zhuliang
  * @date 2019/5/29 14:25
  */

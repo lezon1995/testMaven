@@ -9,10 +9,10 @@ import java.util.Random;
  * @author zhuliang
  * @date 2019/6/10 14:12
  */
-public class 抢红包 {
+public class SeizeBonus {
     //发红包算法，金额参数以分为单位
     public static List<Integer> divideRedPackage(Integer totalAmount, Integer totalPeopleNum) {
-        List<Integer> amountList = new ArrayList<Integer>();
+        List<Integer> amountList = new ArrayList<>();
         Integer restAmount = totalAmount;
         Integer restPeopleNum = totalPeopleNum;
         Random random = new Random(1);

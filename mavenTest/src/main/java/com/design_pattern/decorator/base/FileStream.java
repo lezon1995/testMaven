@@ -1,4 +1,4 @@
-package com.design_pattern.base;
+package com.design_pattern.decorator.base;
 
 public class FileStream implements Stream {
     @Override
