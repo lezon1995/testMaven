@@ -92,11 +92,11 @@
 
 
         <!-- https://mvnrepository.com/artifact/asm/asm-all -->
-        <dependency>
+        <!--<dependency>
             <groupId>asm</groupId>
             <artifactId>asm-all</artifactId>
             <version>3.2</version>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
         <dependency>
