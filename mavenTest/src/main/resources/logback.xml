@@ -44,4 +44,8 @@
     <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
+    <!-- 日志输出级别 -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
 </configuration>
