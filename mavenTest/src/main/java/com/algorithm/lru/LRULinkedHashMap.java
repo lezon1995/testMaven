@@ -5,21 +5,21 @@ import java.util.Map;
 
 public class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
     //定义缓存的容量
-    private int capacity;
+    private int cacheSize;
 
     //带参数的构造器
-    LRULinkedHashMap(int capacity) {
+    LRULinkedHashMap(int cacheSize) {
         //如果accessOrder为true的话，则会把访问过的元素放在链表后面，放置顺序是访问的顺序
         //如果accessOrder为flase的话，则按插入顺序来遍历
-        super(16, 0.75f, true);
+        super((int) Math.ceil(cacheSize / 0.75f) + 1, 0.75f, true);
         //传入指定的缓存最大容量
-        this.capacity = capacity;
+        this.cacheSize = cacheSize;
     }
 
     //实现LRU的关键方法，如果map里面的元素个数大于了缓存最大容量，则删除链表的顶端元素
     @Override
     public boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return size() > capacity;
+        return size() > cacheSize;
     }
 
     @Override
