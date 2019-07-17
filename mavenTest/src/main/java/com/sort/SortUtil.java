@@ -2,12 +2,29 @@ package com.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author zhuliang
  * @date 2019/6/30 13:33
  */
 public class SortUtil {
+    public static void main(String[] args) {
+//        Random random = new Random();
+//        int[] ints = new int[10];
+//        for (int i = 0; i < 10; i++) {
+//            ints[i] = random.nextInt(10000);
+//        }
+        int[] ints = new int[]{5, 5, 4, 4, 3, 3, 2, 2, 9, 9, 8, 8, 6, 6, 7, 7};
+//        int[] ints = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        long start = System.currentTimeMillis();
+//        int[] ints1 = shellSortBySwap(ints);
+        quickSort(ints, 0, ints.length - 1);
+        long end = System.currentTimeMillis();
+        long l = end - start;
+        System.out.println(l + "ms");
+        System.out.println(Arrays.toString(ints));
+    }
 
     /**
      * 1、冒泡排序（Bubble Sort）
@@ -29,16 +46,25 @@ public class SortUtil {
      * @return
      */
     public static int[] bubbleSort(int[] array) {
-        if (array.length == 0) {
-            return array;
-        }
-        for (int i = 0; i < array.length; i++) {
+        //是否进行过交换 如果一次内部循环后仍然是false说明数组已经排序完毕 不需要后面继续判断
+        boolean flag = false;
+        //在外层循环-1 是因为假如一个数组有10个元素，如果确定了9个元素的位置，那么最后一个就自动确定了，所以就不需要做最后一次循环了
+        for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
                 if (array[j + 1] < array[j]) {
+                    flag = true;
                     int temp = array[j + 1];
                     array[j + 1] = array[j];
                     array[j] = temp;
                 }
+            }
+//            System.out.println("第" + (i + 1) + "次循环");
+            //进行过交换 将flag设为false继续下一次循环
+            if (flag) {
+                flag = false;
+            } else {
+                //没有交换过 说明当前数组已经排序完毕
+                break;
             }
         }
         return array;
@@ -70,14 +96,17 @@ public class SortUtil {
      * @return
      */
     public static int[] selectionSort(int[] array) {
-        if (array.length == 0)
-            return array;
+
         for (int i = 0; i < array.length; i++) {
             int minIndex = i;
             for (int j = i; j < array.length; j++) {
-                if (array[j] < array[minIndex]) //找到最小的数
-                    minIndex = j; //将最小数的索引保存
+                //找到最小的数
+                if (array[j] < array[minIndex]) {
+                    //将最小数的索引保存
+                    minIndex = j;
+                }
             }
+            //交换最小数到数组第i个位置
             int temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;
@@ -110,13 +139,14 @@ public class SortUtil {
      * @return
      */
     public static int[] insertionSort(int[] array) {
-        if (array.length == 0)
-            return array;
         int current;
-        for (int i = 0; i < array.length - 1; i++) {
-            current = array[i + 1];
-            int preIndex = i;
-            while (preIndex >= 0 && current < array[preIndex]) {
+        for (int i = 1; i < array.length; i++) {
+            current = array[i];
+            int preIndex = i - 1;
+            //保证preIndex不越界
+            //如果当前值 < 前一个值
+            while (preIndex >= 0 && array[preIndex] > current) {
+                //让当前值 = 前面一个值
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;
             }
@@ -151,24 +181,95 @@ public class SortUtil {
      * <p>
      * 4.4 算法分析
      * 最佳情况：T(n) = O(nlog n)  最坏情况：T(n) = O(nlog n)  平均情况：T(n) =O(nlogn)
+     * 移位式希尔排序
      *
      * @param array
      * @return
      */
-    public static int[] ShellSort(int[] array) {
+    public static int[] shellSortByShift(int[] array) {
         int len = array.length;
         int temp, gap = len / 2;
         while (gap > 0) {
             for (int i = gap; i < len; i++) {
                 temp = array[i];
-                int preIndex = i - gap;
-                while (preIndex >= 0 && array[preIndex] > temp) {
-                    array[preIndex + gap] = array[preIndex];
-                    preIndex -= gap;
+                while (i - gap >= 0 && array[i - gap] > temp) {
+                    array[i] = array[i - gap];
+                    i -= gap;
                 }
-                array[preIndex + gap] = temp;
+                array[i] = temp;
             }
             gap /= 2;
+        }
+        return array;
+    }
+
+
+    /**
+     * **gap=2**
+     * <p>
+     * `i=2` 0,2
+     * <p>
+     * `i=3` 1,3
+     * <p>
+     * `i=4` 2,4	0,2
+     * <p>
+     * `i=5` 3,5	1,3
+     * <p>
+     * `i=6` 4,6	2,4	0,2
+     * <p>
+     * `i=7` 5,7	3,5	1,3
+     * <p>
+     * `i=8` 6,8	4,6	2,4	0,2
+     * <p>
+     * `i=9` 7,9	5,7	3,5	1,3
+     * <p>
+     * ------
+     * <p>
+     * **gap=1**
+     * <p>
+     * `i=1` 0,1
+     * <p>
+     * `i=2` 1,2	0,1
+     * <p>
+     * `i=3` 2,3	1,2	0,1
+     * <p>
+     * `i=4` 3,4	2,3	1,2	0,1
+     * <p>
+     * `i=5` 4,5	3,4	2,3	1,2	0,1
+     * <p>
+     * `i=6` 5,6	4,5	3,4	2,3	1,2	0,1
+     * <p>
+     * `i=7` 6,7	5,6	4,5	3,4	2,3	1,2	0,1
+     * <p>
+     * `i=8` 7,8	6,7	5,6	4,5	3,4	2,3	1,2	0,1
+     * <p>
+     * `i=9` 8,9	7,8	6,7	5,6	4,5	3,4	2,3	1,2	0,1
+     * 交换式希尔排序
+     *
+     * @param array
+     * @return
+     */
+    public static int[] shellSortBySwap(int[] array) {
+        int length = array.length;
+        //步长
+        int gap;
+        int temp;
+        //初始化步长gap = length / 2 ，每次gap/=2
+        for (gap = length / 2; gap > 0; gap /= 2) {
+            //10个元素 gap=5 可以有(0,5)、(1,6)、(2,7)、(3,8)、(4,9)5组
+            //10个元素 gap=2 可以有(0,2,4,6,8)、(1,3,5,7,9) 2组
+            //10个元素 gap=1 可以有(0,1,2,3,4,5,6,7,8,9) 1组
+            //第二次循环可以理解为[组]中逗号的个数 意思
+            for (int i = gap; i < length; i++) {
+                //第三次循环就是[组]内部的排序
+                for (int j = i - gap; j >= 0; j -= gap) {
+                    if (array[j] > array[j + gap]) {
+                        temp = array[j];
+                        array[j] = array[j + gap];
+                        array[j + gap] = temp;
+                    }
+                }
+            }
         }
         return array;
     }
@@ -227,24 +328,6 @@ public class SortUtil {
 
 
     /**
-     * 快速排序方法
-     *
-     * @param array
-     * @param start
-     * @param end
-     * @return
-     */
-    public static int[] QuickSort(int[] array, int start, int end) {
-        if (array.length < 1 || start < 0 || end >= array.length || start > end) return null;
-        int smallIndex = partition(array, start, end);
-        if (smallIndex > start)
-            QuickSort(array, start, smallIndex - 1);
-        if (smallIndex < end)
-            QuickSort(array, smallIndex + 1, end);
-        return array;
-    }
-
-    /**
      * 6、快速排序（Quick Sort）
      * 快速排序的基本思想：通过一趟排序将待排记录分隔成独立的两部分，
      * 其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，
@@ -261,24 +344,61 @@ public class SortUtil {
      * <p>
      * 5.4 算法分析
      * 最佳情况：T(n) = O(nlogn)   最差情况：T(n) = O(n2)   平均情况：T(n) = O(nlogn)
+     * 空间换时间
      *
      * @param array
-     * @param start
-     * @param end
+     * @param left
+     * @param right
      * @return
      */
-    public static int partition(int[] array, int start, int end) {
-        int pivot = (int) (start + Math.random() * (end - start + 1));
-        int smallIndex = start - 1;
-        swap(array, pivot, end);
-        for (int i = start; i <= end; i++)
-            if (array[i] <= array[end]) {
-                smallIndex++;
-                if (i > smallIndex)
-                    swap(array, i, smallIndex);
+    public static void quickSort(int[] array, int left, int right) {
+        int l = left;
+        int r = right;
+        int temp;
+        //获取中值pivot 不一定是中间值
+        int pivot = array[(left + right) / 2];
+        //确保比pivot小的值在左边，大的值在右边
+        while (l < r) {
+            //从左向右遍历数组，找到一个比pivot大的值
+            while (array[l] < pivot) {
+                l++;
             }
-        return smallIndex;
+            //从右向左遍历数组，找到一个比pivot小的值
+            while (array[r] > pivot) {
+                r--;
+            }
+            //如果l>=r 说明当前pivot左边的值是<右边的值的
+            if (l >= r) {
+                break;
+            }
+            //如果 大于pivot的值 在 小于pivot的值 的左边 则交换两个值
+            temp = array[l];
+            array[l] = array[r];
+            array[r] = temp;
+            //如果交换完后array[l] = pivot 则让l 右移
+            if (array[l] == pivot) {
+                l++;
+            }
+            //如果交换完后array[r] = pivot 则让r 左移
+            if (array[r] == pivot) {
+                r--;
+            }
+        }
+        //如果l==r 则必须让l右移 r左移 不然会栈溢出
+        if (l == r) {
+            l++;
+            r--;
+        }
+        //向左递归
+        if (left < l) {
+            quickSort(array, left, r);
+        }
+        //向右递归
+        if (right > r) {
+            quickSort(array, l, right);
+        }
     }
+
 
     /**
      * 交换数组内两个元素

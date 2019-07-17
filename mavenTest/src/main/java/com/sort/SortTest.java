@@ -21,7 +21,7 @@ public class SortTest {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        SortUtil.QuickSort(inits, 0, MAX-1);
+        SortUtil.quickSort(inits, 0, MAX-1);
         long end = System.currentTimeMillis();
 
         System.out.println("耗时:" + (end - start));
