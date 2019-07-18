@@ -10,20 +10,21 @@ import java.util.Random;
  */
 public class SortUtil {
     public static void main(String[] args) {
-//        Random random = new Random();
-//        int[] ints = new int[10];
-//        for (int i = 0; i < 10; i++) {
-//            ints[i] = random.nextInt(10000);
-//        }
-        int[] ints = new int[]{5, 5, 4, 4, 3, 3, 2, 2, 9, 9, 8, 8, 6, 6, 7, 7};
-//        int[] ints = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Random random = new Random();
+        int[] ints = new int[1000000];
+        for (int i = 0; i < 1000000; i++) {
+            ints[i] = random.nextInt(1000000);
+        }
+//        int[] ints = new int[]{5, 5, 4, 4, 3, 3, 2, 2, 9, 9, 8, 8, 6, 6, 7, 7};
+//        int[] ints = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        int[] temp = new int[1000000];
         long start = System.currentTimeMillis();
 //        int[] ints1 = shellSortBySwap(ints);
-        quickSort(ints, 0, ints.length - 1);
+        mergeSort(ints, 0, ints.length - 1, temp);
         long end = System.currentTimeMillis();
         long l = end - start;
         System.out.println(l + "ms");
-        System.out.println(Arrays.toString(ints));
+//        System.out.println(Arrays.toString(ints));
     }
 
     /**
@@ -324,6 +325,67 @@ public class SortUtil {
                 result[index] = left[i++];
         }
         return result;
+    }
+
+
+    public static void mergeSort(int[] array, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            //向左拆分
+            mergeSort(array, left, mid, temp);
+            //向右拆分
+            mergeSort(array, mid + 1, right, temp);
+            //归并
+            merge(array, left, mid, right, temp);
+        }
+    }
+
+    /**
+     * @param array 需要排序的原始数组
+     * @param left  左边有序数组的初始索引
+     * @param mid   右边有序数组的初始索引
+     * @param right 最右索引
+     * @param temp  临时数组 用于存放合并之后的数组
+     */
+    public static void merge(int[] array, int left, int mid, int right, int[] temp) {
+        int l1 = left;
+        int l2 = mid + 1;
+        //临时数组索引
+        int t = 0;
+        //将左右需要合并的数组，按从小到大的顺序加到临时数组中
+        //直到有一方已经全部加完
+        while (l1 <= mid && l2 <= right) {
+            if (array[l1] <= array[l2]) {
+                temp[t] = array[l1];
+                l1++;
+                t++;
+            } else {
+                temp[t] = array[l2];
+                l2++;
+                t++;
+            }
+        }
+        //将剩余的数组的元素直接追加到临时数组最后
+        while (l1 <= mid) {
+            temp[t] = array[l1];
+            l1++;
+            t++;
+        }
+        while (l2 <= right) {
+            temp[t] = array[l2];
+            l2++;
+            t++;
+        }
+
+        //将临时数组拷贝到原数组
+        t = 0;
+        int tempLeft = left;
+        while (tempLeft <= right) {
+            array[tempLeft] = temp[t];
+            tempLeft++;
+            t++;
+        }
+
     }
 
 
