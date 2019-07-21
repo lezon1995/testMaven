@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestSpinLock {
 
-    final static int THREAD_NUM = 3;
+    final static int THREAD_NUM = 10;
     static int x = 0;
 
     public static void main(String[] args) throws InterruptedException {
@@ -20,10 +20,10 @@ public class TestSpinLock {
             Thread thread = new Thread(() -> {
 
                 // 每个线程循环多次，频繁上锁，解锁。
-                for (int n = 0; n < 100; n++) {
+                for (int n = 0; n < 100000; n++) {
                     spinLock.lock();
                     x++;
-                    System.out.println(Thread.currentThread().getName() + " +1 成功");
+//                    System.out.println(Thread.currentThread().getName() + " +1 成功");
                     spinLock.unLock();
                 }
 

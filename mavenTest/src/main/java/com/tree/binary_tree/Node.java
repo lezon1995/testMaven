@@ -1,5 +1,7 @@
 package com.tree.binary_tree;
 
+import java.util.Stack;
+
 class Node {
     public Object obj;
     public Node left;
@@ -32,6 +34,26 @@ class Node {
     }
 
     /**
+     * 非递归前序遍历
+     */
+    public void preOrderUnRecursive() {
+        Stack<Node> stack = new Stack<>();
+        Node current = this;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                System.out.println(current);
+                stack.push(current);
+                current = current.left;
+            }
+            if (!stack.isEmpty()) {
+                current = stack.pop();
+                current = current.right;
+            }
+        }
+    }
+
+
+    /**
      * 前序遍历查找 mid->left->right
      */
     public Node preOrderSearch(Object obj) {
@@ -62,6 +84,24 @@ class Node {
         System.out.println(this);
         if (this.right != null) {
             this.right.midOrder();
+        }
+    }
+    /**
+     * 非递归中序遍历
+     */
+    public void midOrderUnRecursive() {
+        Stack<Node> stack = new Stack<>();
+        Node current = this;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            if (!stack.isEmpty()) {
+                current = stack.pop();
+                System.out.println(current);
+                current = current.right;
+            }
         }
     }
 
@@ -98,6 +138,7 @@ class Node {
         }
         System.out.println(this);
     }
+
     /**
      * 后序遍历查找 left->right->mid
      */
@@ -129,8 +170,7 @@ class Node {
         root.right = root_right;
         root_right.right = root_right_right;
         root_right.left = root_right_left;
-        Node node = root.postOrderSearch(3);
-        System.out.println(node);
+        root.midOrderUnRecursive();
 
     }
 }
