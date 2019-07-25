@@ -37,10 +37,10 @@ public class SortTest {
     }
 
     /**
-     * 去前n个最大的数
+     * 获取前n个最大的数
      *
      * @param array 原始数组
-     * @param n 前n个
+     * @param n     前n个
      */
     public static int[] heapSort(int[] array, int n) {
         int size = n;
@@ -62,6 +62,12 @@ public class SortTest {
         return result;
     }
 
+    /**
+     * 构建大顶堆
+     *
+     * @param array  原始数组
+     * @param length 需要构建的长度
+     */
     private static void buildMaxHeap(int[] array, int length) {
         //从最后一个非叶子节点开始
         for (int i = length / 2 - 1; i >= 0; i--) {
