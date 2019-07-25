@@ -143,28 +143,35 @@ class Node {
 
     // 后序遍历非递归
     public void postOrderNon() {
+        //用于存放节点的栈
         Stack<Node> nodeStack = new Stack<>();
-        Stack<Integer> integerStack = new Stack<>();
+        //用于存放节点是否准备好被访问的栈，跟nodeStack中元元素一一对应
+        // true：准备好 false：为准备好
+        Stack<Boolean> booleanStack = new Stack<>();
         Node current = this;
         while (current != null || !nodeStack.empty()) {
+            //一直遍历左子节点，并将节点其压入栈中，默认都是未准备好
             while (current != null) {
                 nodeStack.push(current);
-                integerStack.push(0);
+                booleanStack.push(false);
                 current = current.left;
             }
-            while (!nodeStack.empty() && integerStack.peek() == 1) {
-                integerStack.pop();
+            //如果栈中有元素，并且栈顶的元素准备好被访问，则将其取出并操作
+            while (!nodeStack.empty() && booleanStack.peek()) {
+                booleanStack.pop();
                 Node node = nodeStack.pop();
-                System.out.print(node);
+                System.out.println(node);
             }
+            //如果栈中还有元素，将栈顶的元素设置为准备好，
             if (!nodeStack.empty()) {
-                integerStack.pop();
-                integerStack.push(1);
+                booleanStack.pop();
+                booleanStack.push(true);
                 current = nodeStack.peek();
                 current = current.right;
             }
         }
     }
+
 
     /**
      * 后序遍历查找 left->right->mid
@@ -187,7 +194,7 @@ class Node {
     }
 
     public void levelTraverse() {
-        Node root=this;
+        Node root = this;
         LinkedList<Node> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -201,7 +208,6 @@ class Node {
             }
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -219,7 +225,7 @@ class Node {
         root_left.left = root_left_left;
         root_left.right = root_left_right;
 //        root.postOrder();
-        root.levelTraverse();
+        root.postOrderNon();
 
     }
 }
