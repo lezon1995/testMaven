@@ -16,7 +16,7 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
      * created using the {@link } class.
      *
      * @throws RemoteException if failed to export object
-     * @since JDK1.1
+     * @since JDK
      */
     protected RmiInterfaceImpl() throws RemoteException {
         super();

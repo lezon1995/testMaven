@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class TestSpinLock {
 
-    final static int THREAD_NUM = 10;
-    static int x = 0;
+    private final static int THREAD_NUM = 10;
+    private static int x = 0;
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(THREAD_NUM);
