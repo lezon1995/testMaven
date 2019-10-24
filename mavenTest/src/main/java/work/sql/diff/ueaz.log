@@ -11,7 +11,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   KEY `idx_alarm_id` (`alarm_id`),
   KEY `idx_alarm_num` (`alarm_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='AG警报关系表'', tablefileds=[`id`, `alarm_id`, `alarm_num`, `clear_flag`, `gmt_create`, `gmt_modified`, `gmt_delete`, `gmt_finish`, `status`], tablefiledscomment=[主键, 报警id, AG报警标识, 清除标志 0-未完成 1-已完成, 创建时间, 修改时间, 删除时间, 成功处理时间, 状态 0-无效 1-有效]}}
+) ENGINE=InnoDB AUTO_INCREMENT=11014 DEFAULT CHARSET=utf8mb4 COMMENT='AG警报关系表'', tablefileds=[`id`, `alarm_id`, `alarm_num`, `clear_flag`, `gmt_create`, `gmt_modified`, `gmt_delete`, `gmt_finish`, `status`], tablefiledscomment=[主键, 报警id, AG报警标识, 清除标志 0-未完成 1-已完成, 创建时间, 修改时间, 删除时间, 成功处理时间, 状态 0-无效 1-有效]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_paladin_door_lock_dp` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -54,7 +54,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_msgid` (`msg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息扩展表'', tablefileds=[`id`, `user_id`, `msg_id`, `read_status`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 用户id, 消息id, 读取状态, 有效状态, 创建时间, 修改时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=21007 DEFAULT CHARSET=utf8mb4 COMMENT='消息扩展表'', tablefileds=[`id`, `user_id`, `msg_id`, `read_status`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 用户id, 消息id, 读取状态, 有效状态, 创建时间, 修改时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_paladin_monitor_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -69,15 +69,46 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   KEY `idx_tc` (`transmitter_code`),
   KEY `idx_homeid` (`home_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='监控中心消息日志表'', tablefileds=[`id`, `transmitter_code`, `home_id`, `function_name`, `retry`, `success_flag`, `gmt_create`, `gmt_modified`, `status`], tablefiledscomment=[主键, AG监控中心账户标识, 家庭id, 调用的方法名, 重试次数, 成功状态  0-初始,-1-失败,1-成功, 创建时间, 修改时间, 状态信息 1-有效，0-无效]}}
+) ENGINE=InnoDB AUTO_INCREMENT=26063 DEFAULT CHARSET=utf8mb4 COMMENT='监控中心消息日志表'', tablefileds=[`id`, `transmitter_code`, `home_id`, `function_name`, `retry`, `success_flag`, `gmt_create`, `gmt_modified`, `status`], tablefiledscomment=[主键, AG监控中心账户标识, 家庭id, 调用的方法名, 重试次数, 成功状态  0-初始,-1-失败,1-成功, 创建时间, 修改时间, 状态信息 1-有效，0-无效]}}
+
+ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_paladin_monitor_siteinfo` (
+  `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `home_id` varchar(20) NOT NULL DEFAULT '' COMMENT '家庭id',
+  `lat` varchar(20) NOT NULL DEFAULT '' COMMENT '维度',
+  `lng` varchar(20) NOT NULL DEFAULT '' COMMENT '经度',
+  `country` varchar(32) NOT NULL DEFAULT '' COMMENT '国家',
+  `region` varchar(20) NOT NULL DEFAULT '' COMMENT '地区',
+  `state` varchar(20) NOT NULL DEFAULT '' COMMENT '州',
+  `city` varchar(32) NOT NULL DEFAULT '' COMMENT '城市',
+  `zipcode` varchar(10) NOT NULL DEFAULT '' COMMENT '邮编',
+  `address` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
+  `address2` varchar(255) NOT NULL DEFAULT '' COMMENT '备用地址',
+  `additional` varchar(128) NOT NULL DEFAULT '' COMMENT '额外信息',
+  `site_type` varchar(10) NOT NULL DEFAULT '' COMMENT '住宅类型',
+  `time_zone` varchar(10) NOT NULL DEFAULT '' COMMENT '时区',
+  `lang` varchar(20) NOT NULL DEFAULT '' COMMENT '语言',
+  `codeword` varchar(32) NOT NULL DEFAULT '' COMMENT '验证码',
+  `signature` varchar(20) NOT NULL DEFAULT '' COMMENT '签名',
+  `status` tinyint(255) NOT NULL DEFAULT '1' COMMENT '状态 1-有效 0-无效',
+  `gmt_create` bigint(13) NOT NULL COMMENT '创建时间',
+  `gmt_modified` bigint(13) NOT NULL COMMENT '修改时间',
+  `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_home_id` (`home_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='监控中心家庭信息表'', tablefileds=[`id`, `home_id`, `lat`, `lng`, `country`, `region`, `state`, `city`, `zipcode`, `address`, `address2`, `additional`, `site_type`, `time_zone`, `lang`, `codeword`, `signature`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 家庭id, 维度, 经度, 国家, 地区, 州, 城市, 邮编, 地址, 备用地址, 额外信息, 住宅类型, 时区, 语言, 验证码, 签名, 状态 1-有效 0-无效, 创建时间, 修改时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_alarm` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `alarm_id` varchar(32) NOT NULL DEFAULT '' COMMENT '报警id',
   `home_id` varchar(32) NOT NULL DEFAULT '' COMMENT '家庭id',
   `msg_id` varchar(64) NOT NULL DEFAULT '' COMMENT '报警消息id',
+  `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道id',
   `state` tinyint(2) NOT NULL DEFAULT '1' COMMENT '流程状态',
   `type` varchar(64) NOT NULL DEFAULT '' COMMENT '报警类型',
+  `env` tinyint(2) NOT NULL DEFAULT '4' COMMENT '环境 1开发 2日常 3预发 4线上',
+  `dps` varchar(256) NOT NULL DEFAULT '' COMMENT '报警dp信息',
+  `biz_id` int(11) NOT NULL DEFAULT '0' COMMENT '业务id',
   `gmt_finish` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '处理时间',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
@@ -86,8 +117,10 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_alarmid` (`alarm_id`),
   KEY `idx_gmtcreate` (`gmt_create`),
-  KEY `idx_homeid` (`home_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='报警'', tablefileds=[`id`, `alarm_id`, `home_id`, `msg_id`, `state`, `type`, `gmt_finish`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 报警id, 家庭id, 报警消息id, 流程状态, 报警类型, 处理时间, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+  KEY `idx_homeid` (`home_id`),
+  KEY `idx_dealer` (`dealer_id`),
+  KEY `idx_channel` (`channel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=68009 DEFAULT CHARSET=utf8mb4 COMMENT='报警'', tablefileds=[`id`, `alarm_id`, `home_id`, `msg_id`, `dealer_id`, `channel_id`, `state`, `type`, `env`, `dps`, `biz_id`, `gmt_finish`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 报警id, 家庭id, 报警消息id, 服务商id, 渠道id, 流程状态, 报警类型, 环境 1开发 2日常 3预发 4线上, 报警dp信息, 业务id, 处理时间, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_alarm_operation_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -101,7 +134,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_alarmid` (`alarm_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='报警消息操作记录'', tablefileds=[`id`, `alarm_id`, `user_id`, `operation`, `op_type`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 报警信息id, 用户id, 操作, 操作类型, 状态信息 1-有效，0-无效, 创建时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=61191 DEFAULT CHARSET=utf8mb4 COMMENT='报警消息操作记录'', tablefileds=[`id`, `alarm_id`, `user_id`, `operation`, `op_type`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 报警信息id, 用户id, 操作, 操作类型, 状态信息 1-有效，0-无效, 创建时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_alarm_type` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -114,7 +147,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_product_id_code_type` (`record_type`,`product_id_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='报警类型'', tablefileds=[`id`, `record_type`, `product_id_code`, `type_code`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 0:pid,1:category_code, 产品id或者品类编号, 报警类型, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COMMENT='报警类型'', tablefileds=[`id`, `record_type`, `product_id_code`, `type_code`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 0:pid,1:category_code, 产品id或者品类编号, 报警类型, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_area` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -129,6 +162,40 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   KEY `idx_sort` (`sort`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2248 DEFAULT CHARSET=utf8mb4 COMMENT='地区信息'', tablefileds=[`id`, `parent_id`, `area_name`, `sort`, `status`, `gmt_create`, `gmt_modified`], tablefiledscomment=[主键id, 上一级的id值, 地区名称, 排序, 是否有效, 创建时间, 修改时间]}}
 
+ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_channel` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `channel_id` varchar(32) NOT NULL COMMENT '渠道id',
+  `dealer_id` varchar(32) NOT NULL COMMENT '服务商id',
+  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '渠道名',
+  `phone` varchar(24) NOT NULL DEFAULT '' COMMENT '电话',
+  `email` varchar(64) NOT NULL DEFAULT '' COMMENT 'email',
+  `code` varchar(8) NOT NULL DEFAULT '' COMMENT '注册码',
+  `state` varchar(32) NOT NULL DEFAULT '' COMMENT '州',
+  `city` varchar(64) NOT NULL DEFAULT '' COMMENT '城市',
+  `address` varchar(128) NOT NULL DEFAULT '' COMMENT '地址',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
+  `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
+  `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
+  `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_channel` (`channel_id`),
+  KEY `idx_dealer` (`dealer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='渠道商信息'', tablefileds=[`id`, `channel_id`, `dealer_id`, `name`, `phone`, `email`, `code`, `state`, `city`, `address`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 渠道id, 服务商id, 渠道名, 电话, email, 注册码, 州, 城市, 地址, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+
+ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_code` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '类型:1服务商 2渠道商',
+  `code` varchar(12) NOT NULL COMMENT '注册码',
+  `dealer_or_channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
+  `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
+  `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
+  `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_code` (`code`),
+  UNIQUE KEY `unq_type_dealerorchannel` (`type`,`dealer_or_channel_id`,`status`,`gmt_delete`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='注册码'', tablefileds=[`id`, `type`, `code`, `dealer_or_channel_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 类型:1服务商 2渠道商, 注册码, 服务商id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_contacts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `home_id` varchar(64) NOT NULL DEFAULT '' COMMENT '家庭id',
@@ -141,7 +208,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态信息 1-有效，0-无效',
   PRIMARY KEY (`id`),
   KEY `idx_location_id_status` (`home_id`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防紧急联系人表'', tablefileds=[`id`, `home_id`, `name`, `phone`, `area_code`, `sequence`, `gmt_create`, `gmt_modified`, `status`], tablefiledscomment=[主键, 家庭id, 联系人姓名, 电话号码, 电话区号, 联系人顺序, 创建时间, 更新时间, 状态信息 1-有效，0-无效]}}
+) ENGINE=InnoDB AUTO_INCREMENT=3002 DEFAULT CHARSET=utf8mb4 COMMENT='安防紧急联系人表'', tablefileds=[`id`, `home_id`, `name`, `phone`, `area_code`, `sequence`, `gmt_create`, `gmt_modified`, `status`], tablefiledscomment=[主键, 家庭id, 联系人姓名, 电话号码, 电话区号, 联系人顺序, 创建时间, 更新时间, 状态信息 1-有效，0-无效]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_dealer` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
@@ -155,7 +222,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_code` (`code`),
   UNIQUE KEY `unq_dealerid` (`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='注册码'', tablefileds=[`id`, `code`, `dealer_id`, `biz`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 注册码, 服务商id, 业务线id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='注册码'', tablefileds=[`id`, `code`, `dealer_id`, `biz`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[自增id, 注册码, 服务商id, 业务线id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_device` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -170,7 +237,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_deviceid_mode` (`home_id`,`device_id`,`mode`),
   KEY `idx_deviceid` (`device_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防设备'', tablefileds=[`id`, `mode`, `env`, `home_id`, `device_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 布防模式, 环境:1预发 2线上, 家庭id, 设备id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=44004 DEFAULT CHARSET=utf8mb4 COMMENT='安防设备'', tablefileds=[`id`, `mode`, `env`, `home_id`, `device_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 布防模式, 环境:1预发 2线上, 家庭id, 设备id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_device_default` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -183,7 +250,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_product_id_mode_env` (`product_id`,`mode`,`env`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='布防模式默认设备表'', tablefileds=[`id`, `mode`, `product_id`, `env`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 布防模式 1-在家 2-离家 -1 固定设备 -2 网关, 产品id或者品类编号, 环境 1预发 2线上, 状态 0无效 1有效, 生成时间, 修改时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='布防模式默认设备表'', tablefileds=[`id`, `mode`, `product_id`, `env`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 布防模式 1-在家 2-离家 -1 固定设备 -2 网关, 产品id或者品类编号, 环境 1预发 2线上, 状态 0无效 1有效, 生成时间, 修改时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_fence` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -210,14 +277,30 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_home` (`home_id`,`status`,`gmt_delete`),
   UNIQUE KEY `unq_device` (`device_id`,`status`,`gmt_delete`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='家庭网关'', tablefileds=[`id`, `home_id`, `device_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, homeid, 设备id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=34036 DEFAULT CHARSET=utf8mb4 COMMENT='家庭网关'', tablefileds=[`id`, `home_id`, `device_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, homeid, 设备id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+
+ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_gw_tmp` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `home_id` varchar(64) NOT NULL COMMENT 'homeid',
+  `device_id` varchar(64) NOT NULL COMMENT '设备id',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
+  `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
+  `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
+  `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_homeid` (`home_id`,`status`,`gmt_delete`),
+  UNIQUE KEY `unq_deviceid` (`device_id`,`status`,`gmt_delete`)
+) ENGINE=InnoDB AUTO_INCREMENT=8003 DEFAULT CHARSET=utf8mb4 COMMENT='家庭网关'', tablefileds=[`id`, `home_id`, `device_id`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, homeid, 设备id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_home` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `home_id` varchar(64) NOT NULL COMMENT 'homeid',
   `dealer_id` varchar(64) NOT NULL COMMENT 'dealer',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
   `biz` int(11) NOT NULL DEFAULT '0' COMMENT '业务线id',
+  `service_plan` tinyint(2) NOT NULL DEFAULT '0' COMMENT '服务类型',
   `mode` tinyint(2) DEFAULT NULL COMMENT '布防状态',
+  `mc_state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '监控中心设置 0-初始 1-个人 2-专业',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
   `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
@@ -225,7 +308,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid` (`home_id`),
   KEY `idx_dealerid` (`dealer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防家庭'', tablefileds=[`id`, `home_id`, `dealer_id`, `biz`, `mode`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, homeid, dealer, 业务线id, 布防状态, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=14002 DEFAULT CHARSET=utf8mb4 COMMENT='安防家庭'', tablefileds=[`id`, `home_id`, `dealer_id`, `channel_id`, `biz`, `service_plan`, `mode`, `mc_state`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, homeid, dealer, 渠道, 业务线id, 服务类型, 布防状态, 监控中心设置 0-初始 1-个人 2-专业, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_message` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -245,7 +328,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_mid` (`msg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防消息中心表'', tablefileds=[`id`, `msg_id`, `home_id`, `product_id`, `product_type`, `device_ids`, `icon`, `msg_type`, `msg_title`, `msg_content`, `attach_pics`, `state`, `status`, `gmt_create`, `gmt_modified`], tablefiledscomment=[主键id, 消息id, 家庭id, 产品id, 设备类型, 设备Id, 消息图片, 消息类型, 消息标题, 消息内容, 消息附加图片, 消息状态 0未读 1已读, 状态字段 0-无效，1-有效, 创建时间, 更新时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=62338 DEFAULT CHARSET=utf8mb4 COMMENT='安防消息中心表'', tablefileds=[`id`, `msg_id`, `home_id`, `product_id`, `product_type`, `device_ids`, `icon`, `msg_type`, `msg_title`, `msg_content`, `attach_pics`, `state`, `status`, `gmt_create`, `gmt_modified`], tablefiledscomment=[主键id, 消息id, 家庭id, 产品id, 设备类型, 设备Id, 消息图片, 消息类型, 消息标题, 消息内容, 消息附加图片, 消息状态 0未读 1已读, 状态字段 0-无效，1-有效, 创建时间, 更新时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_password` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -258,7 +341,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_type` (`home_id`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防密码'', tablefileds=[`id`, `home_id`, `type`, `password`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 家庭id, 密码类型, 围栏数据, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='安防密码'', tablefileds=[`id`, `home_id`, `type`, `password`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 家庭id, 密码类型, 围栏数据, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_protocol_state` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -275,7 +358,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_home_gateway_state_id` (`home_id`,`gateway_id`,`state_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防协议上报关系表'', tablefileds=[`id`, `gateway_id`, `state_id`, `home_id`, `user_id`, `node_id`, `type`, `mode`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 网关id, 布防id, 家庭id, 用户id, 设备的mesh中的id, 协议类型, 布防状态, 1-有效 0-无效, 创建时间, 修改时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=17318 DEFAULT CHARSET=utf8mb4 COMMENT='安防协议上报关系表'', tablefileds=[`id`, `gateway_id`, `state_id`, `home_id`, `user_id`, `node_id`, `type`, `mode`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 网关id, 布防id, 家庭id, 用户id, 设备的mesh中的id, 协议类型, 布防状态, 1-有效 0-无效, 创建时间, 修改时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_rule` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -296,7 +379,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   UNIQUE KEY `unq_homeid_sourceid_entityid_mode` (`home_id`,`source_id`,`entity_id`,`mode`),
   KEY `idx_entityid` (`entity_id`),
   KEY `idx_homeid` (`home_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防规则'', tablefileds=[`id`, `rule_id`, `home_id`, `mode`, `env`, `entity_id`, `source_id`, `attribute`, `rule`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, id, homeid, 模式, 环境:1预发 2线上, 设备id, 资源id, 附加属性, 规则, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=46007 DEFAULT CHARSET=utf8mb4 COMMENT='安防规则'', tablefileds=[`id`, `rule_id`, `home_id`, `mode`, `env`, `entity_id`, `source_id`, `attribute`, `rule`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, id, homeid, 模式, 环境:1预发 2线上, 设备id, 资源id, 附加属性, 规则, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_rule_source` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -314,10 +397,10 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_productid_dealerid` (`product_id`,`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'', tablefileds=[`id`, `mode`, `env`, `dealer_id`, `product_id`, `attribute`, `source_id`, `rule`, `weight`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 状态, 环境:1预发 2线上, 服务商id, 产品id, 附加属性, 资源id, 规则, 权重, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'', tablefileds=[`id`, `mode`, `env`, `dealer_id`, `product_id`, `attribute`, `source_id`, `rule`, `weight`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 状态, 环境:1预发 2线上, 服务商id, 产品id, 附加属性, 资源id, 规则, 权重, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_schema` (
-  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `product_id` varchar(32) NOT NULL DEFAULT '' COMMENT '产品id',
   `dp` varchar(12) NOT NULL COMMENT 'dp',
   `dp_type` varchar(12) NOT NULL DEFAULT '' COMMENT 'dp类型',
@@ -329,7 +412,7 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_product_dp` (`product_id`,`dp`,`status`,`gmt_delete`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='schema配置'', tablefileds=[`id`, `product_id`, `dp`, `dp_type`, `dp_name`, `schema`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 产品id, dp, dp类型, dp名称, schema, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COMMENT='schema配置'', tablefileds=[`id`, `product_id`, `dp`, `dp_type`, `dp_name`, `schema`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 产品id, dp, dp类型, dp名称, schema, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_time` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -344,12 +427,13 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_mode_type` (`home_id`,`mode`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防延迟时间'', tablefileds=[`id`, `home_id`, `mode`, `type`, `time`, `env`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 家庭id, 布防模式, 类型, 时间, 环境:1预发 2线上, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=33007 DEFAULT CHARSET=utf8mb4 COMMENT='安防延迟时间'', tablefileds=[`id`, `home_id`, `mode`, `type`, `time`, `env`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, 家庭id, 布防模式, 类型, 时间, 环境:1预发 2线上, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 
 ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisces_pisces_user` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `uid` varchar(64) NOT NULL COMMENT 'uid',
-  `dealer_id` varchar(64) NOT NULL COMMENT 'dealer',
+  `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT 'dealer',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
   `biz` int(11) NOT NULL DEFAULT '0' COMMENT '业务线id',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
@@ -358,5 +442,5 @@ ResponseResult{status=200, message='', data=Data{tablestruct='CREATE TABLE `pisc
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_uid` (`uid`),
   KEY `idx_dealerid` (`dealer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防用户'', tablefileds=[`id`, `uid`, `dealer_id`, `biz`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, uid, dealer, 业务线id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
+) ENGINE=InnoDB AUTO_INCREMENT=22003 DEFAULT CHARSET=utf8mb4 COMMENT='安防用户'', tablefileds=[`id`, `uid`, `dealer_id`, `channel_id`, `biz`, `status`, `gmt_create`, `gmt_modified`, `gmt_delete`], tablefiledscomment=[主键, uid, dealer, 渠道, 业务线id, 状态:0无效 1有效, 生成时间, 更新时间, 删除时间]}}
 

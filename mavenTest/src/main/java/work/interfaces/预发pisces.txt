@@ -1,0 +1,55 @@
+tuya.m.security.service.detail.get								1.0				2019-09-05 14:47:06
+tuya.m.security.service.config.get								1.0				2019-09-02 17:02:20
+
+
+tuya.m.security.service.camera.bind								1.0				2019-08-31 18:10:48
+tuya.m.security.user.active								1.0				2019-08-30 18:17:48
+tuya.industry.security.user.active								1.0				2019-08-30 18:04:29
+tuya.m.security.delay.time.save								1.0				2019-08-23 14:34:53
+tuya.m.security.dealer.bind								1.0				2019-08-23 14:34:53
+tuya.m.security.alarm.state.update								1.0				2019-08-23 14:34:53
+tuya.m.security.msg.center.list								2.0				2019-08-23 14:34:53
+tuya.m.security.msg.center.query								1.0				2019-08-23 14:34:53
+tuya.m.security.delay.time.get								1.0				2019-08-23 14:34:53
+tuya.device.h.s.default.enable.time								1.0				2019-08-23 14:34:53
+tuya.m.security.msg.center.remove								1.0				2019-08-23 14:34:53
+tuya.m.security.password.save								1.0				2019-08-23 14:29:53
+tuya.m.security.fence.save								1.0				2019-08-23 14:29:53
+tuya.m.security.msg.center.update								1.0				2019-08-23 14:29:53
+tuya.m.security.password.get								1.0				2019-08-23 14:29:53
+tuya.m.security.product.dp.get.lang								1.0				2019-08-23 14:29:53
+tuya.m.security.rule.device.get								2.0				2019-08-23 14:28:53
+tuya.m.security.product.dp.get.lang								3.0				2019-08-23 14:28:53
+tuya.m.security.rule.device.get								1.0				2019-08-23 14:28:53
+tuya.m.security.product.dp.get.lang								2.0				2019-08-23 14:28:53
+tuya.m.security.rule.device.save								1.0				2019-08-23 14:28:53
+tuya.m.security.service.plan.get								1.0				2019-08-23 14:28:53
+tuya.industry.security.dealer.code.get								1.0				2019-08-23 09:55:39
+tuya.m.security.group.member.process								1.0				2019-08-22 19:24:53
+tuya.m.security.location.add								2.0				2019-08-22 16:28:26
+tuya.m.security.user.mobile.register								1.0				2019-08-20 16:47:52
+tuya.m.security.user.username.register								3.0				2019-08-20 16:47:52
+tuya.m.security.user.email.password.login								3.0				2019-08-20 16:47:52
+tuya.m.security.user.mobile.passwd.login								3.0				2019-08-20 16:47:52
+tuya.m.security.user.email.register								2.0				2019-08-20 16:47:52
+tuya.m.security.user.code.login								1.0				2019-08-20 16:47:52
+tuya.m.security.group.member.update								3.0				2019-08-20 16:30:09
+tuya.m.security.group.member.add								3.0				2019-08-20 16:30:09
+tuya.m.security.group.member.add								1.0				2019-08-20 14:41:05
+tuya.m.security.group.member.update								1.0				2019-08-20 14:41:05
+
+--tuya.m.security.user.username.register								1.0				2019-08-15 17:29:04
+--tuya.m.security.user.mobile.passwd.login								1.0				2019-08-15 17:29:04
+--tuya.m.security.user.email.password.login								1.0				2019-08-15 17:29:04
+--tuya.m.security.user.email.register								1.0				2019-08-15 17:29:04
+
+
+tuya.device.h.s.boot.config.get								1.0				2019-07-31 18:07:02
+tuya.m.security.product.dp.schema.get								1.0				2019-07-23 19:23:37
+tuya.m.security.alarm.open.list								1.0				2019-07-05 14:47:19
+tuya.m.security.dealer.code.get								1.0				2019-07-05 14:46:21
+tuya.m.security.device.state.rule.get								1.0				2019-07-05 14:44:44
+tuya.m.security.dealer.get								1.0				2019-05-31 15:28:02
+tuya.m.security.fence.delete								1.0				2019-05-31 15:22:33
+tuya.m.security.get.fence.list								1.0				2019-05-31 15:21:57
+tuya.m.security.white.product.list								1.0				2019-05-31 15:21:19
