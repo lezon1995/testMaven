@@ -1,100 +1,100 @@
-tuya.m.security.device.category.list								1.0				2019-11-13 20:01:52 - 2019-11-13 20:01:52
-tuya.m.security.operation.log.add								1.0				2019-11-11 16:15:31 - 2019-11-11 16:15:31
-tuya.m.security.camera.cover.get								1.0				2019-11-08 10:15:25 - 2019-11-08 10:15:25
-tuya.m.security.service.sensor.camera.bind.list								1.0				2019-11-06 20:35:14 - 1970-01-01 08:00:00
-tuya.m.security.service.sensor.list								1.0				2019-11-06 20:35:14 - 1970-01-01 08:00:00
-tuya.m.security.service.sensor.camera.list								1.0				2019-11-06 20:06:56 - 1970-01-01 08:00:00
-tuya.m.security.service.sensor.link								1.0				2019-11-06 20:05:56 - 1970-01-01 08:00:00
-tuya.m.tuya.m.tuya.m.test.linkage.rule.query								1.0				2019-11-04 20:44:31 - 2019-11-04 20:44:31
-tuya.m.security.geo.fence.home.data.get								2.0				2019-10-30 22:18:18 - 2019-10-30 22:18:18
-tuya.m.security.geo.fence.member.join								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.member.list.get								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.user.mobile.save								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geofencing.switch								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.user.mobile.delete								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.data.list.get								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.region.state.update								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.user.mobile.active.set								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.service.switch								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.mobile.list.get								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geo.fence.data.save								2.0				2019-10-30 21:07:03 - 1970-01-01 08:00:00
-tuya.m.security.geofencing.state.get								2.0				2019-10-30 21:01:46 - 2019-10-30 21:01:46
-tuya.m.security.geo.fence.service.state.get								2.0				2019-10-30 21:00:21 - 2019-10-30 21:00:21
-tuya.open.security.message.send								1.0				2019-10-29 09:42:24 - 2019-10-28 20:06:04
-tuya.m.security.user.switch.config.list								1.0				2019-10-22 12:38:43 - 2019-10-22 12:38:43
-tuya.m.security.user.switch.config.default								1.0				2019-10-22 12:38:43 - 2019-10-22 12:38:43
-tuya.m.security.user.switch.config.update								1.0				2019-10-22 12:38:43 - 2019-10-22 12:38:43
-tuya.m.security.user.switch.config.category.list								1.0				2019-10-22 12:37:59 - 2019-10-22 12:37:59
-tuya.m.security.user.switch.category.update								1.0				2019-10-22 12:36:37 - 2019-10-22 12:36:37
-tuya.m.security.device.reset								1.0				2019-10-17 16:47:55 - 2019-10-17 16:47:55
-tuya.m.security.msg.center.favorite								1.0				2019-10-16 15:53:37 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.remove								3.0				2019-10-16 15:53:29 - 2019-10-16 15:53:29
-tuya.m.security.msg.center.list								4.0				2019-10-16 15:53:21 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.update								3.0				2019-10-16 15:53:14 - 2019-10-16 15:53:14
-tuya.m.send.message.instance								1.0				2019-10-14 17:10:03 - 1970-01-01 08:00:00
-tuya.m.security.user.feedback.code.get								1.0				2019-10-09 17:50:25 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.get								1.0				2019-09-27 16:25:03 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.geo.get								1.0				2019-09-26 20:04:03 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.list.get								1.0				2019-09-26 20:04:03 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.geo.switch								1.0				2019-09-26 17:01:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.member.list.get								1.0				2019-09-26 17:01:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.device.list.get								1.0				2019-09-26 17:01:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.toggle								1.0				2019-09-26 17:01:03 - 1970-01-01 08:00:00
-tuya.m.security.user.email.code.login								3.0				2019-09-20 16:46:17 - 2019-09-20 16:46:17
-tuya.m.security.user.mobile.code.login								3.0				2019-09-20 16:25:34 - 2019-09-20 16:25:34
-tuya.m.security.service.fence.process								1.0				2019-09-20 15:31:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.record								1.0				2019-09-20 15:31:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.switch								1.0				2019-09-20 15:31:04 - 1970-01-01 08:00:00
-tuya.m.security.service.fence.upload								1.0				2019-09-19 14:47:51 - 2019-09-19 14:47:51
-tuya.m.security.service.fence.set								1.0				2019-09-19 14:47:51 - 2019-09-19 14:47:51
-tuya.m.security.service.fence.delete								1.0				2019-09-19 14:47:51 - 2019-09-19 14:47:51
-tuya.m.security.service.detail.get								1.0				2019-09-05 14:47:06 - 1970-01-01 08:00:00
-tuya.m.security.service.config.get								1.0				2019-09-02 17:02:20 - 2019-09-02 17:02:20
-tuya.m.security.service.camera.bind								1.0				2019-08-31 18:10:48 - 1970-01-01 08:00:00
-tuya.m.security.user.active								1.0				2019-08-30 18:17:48 - 1970-01-01 08:00:00
-tuya.industry.security.user.active								1.0				2019-08-30 18:04:29 - 1970-01-01 08:00:00
-tuya.m.security.delay.time.save								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.dealer.bind								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.alarm.state.update								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.list								2.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.query								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.delay.time.get								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.device.h.s.default.enable.time								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.remove								1.0				2019-08-23 14:34:53 - 1970-01-01 08:00:00
-tuya.m.security.password.save								1.0				2019-08-23 14:29:53 - 1970-01-01 08:00:00
-tuya.m.security.fence.save								1.0				2019-08-23 14:29:53 - 1970-01-01 08:00:00
-tuya.m.security.msg.center.update								1.0				2019-08-23 14:29:53 - 1970-01-01 08:00:00
-tuya.m.security.password.get								1.0				2019-08-23 14:29:53 - 1970-01-01 08:00:00
-tuya.m.security.product.dp.get.lang								1.0				2019-08-23 14:29:53 - 1970-01-01 08:00:00
-tuya.m.security.rule.device.get								2.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.m.security.product.dp.get.lang								3.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.m.security.rule.device.get								1.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.m.security.product.dp.get.lang								2.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.m.security.rule.device.save								1.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.m.security.service.plan.get								1.0				2019-08-23 14:28:53 - 1970-01-01 08:00:00
-tuya.industry.security.dealer.code.get								1.0				2019-08-23 09:55:39 - 2019-08-23 09:55:39
-tuya.m.security.group.member.process								1.0				2019-08-22 19:24:53 - 1970-01-01 08:00:00
-tuya.m.security.location.add								2.0				2019-08-22 16:28:26 - 1970-01-01 08:00:00
-tuya.m.security.user.mobile.register								1.0				2019-08-20 16:47:52 - 1970-01-01 08:00:00
-tuya.m.security.user.username.register								3.0				2019-08-20 16:47:52 - 2019-08-20 16:47:52
-tuya.m.security.user.email.password.login								3.0				2019-08-20 16:47:52 - 2019-08-20 16:47:52
-tuya.m.security.user.mobile.passwd.login								3.0				2019-08-20 16:47:52 - 2019-08-20 16:47:52
-tuya.m.security.user.email.register								2.0				2019-08-20 16:47:52 - 2019-08-20 16:47:52
-tuya.m.security.user.code.login								1.0				2019-08-20 16:47:52 - 1970-01-01 08:00:00
-tuya.m.security.group.member.update								3.0				2019-08-20 16:30:09 - 2019-08-20 16:30:09
-tuya.m.security.group.member.add								3.0				2019-08-20 16:30:09 - 2019-08-20 16:30:09
-tuya.m.security.group.member.add								1.0				2019-08-20 14:41:05 - 2019-08-20 14:41:05
-tuya.m.security.group.member.update								1.0				2019-08-20 14:41:05 - 2019-08-20 14:41:05
-tuya.m.security.user.username.register								1.0				2019-08-15 17:29:04 - 2019-08-15 17:29:04
-tuya.m.security.user.mobile.passwd.login								1.0				2019-08-15 17:29:04 - 2019-08-15 17:29:04
-tuya.m.security.user.email.password.login								1.0				2019-08-15 17:29:04 - 2019-08-15 17:29:04
-tuya.m.security.user.email.register								1.0				2019-08-15 17:29:04 - 2019-08-15 17:29:04
-tuya.device.h.s.boot.config.get								1.0				2019-07-31 18:07:02 - 2019-07-31 16:38:37
-tuya.m.security.product.dp.schema.get								1.0				2019-07-23 19:23:37 - 2019-07-23 15:18:20
-tuya.m.security.alarm.open.list								1.0				2019-07-05 14:47:19 - 2019-07-05 14:47:19
-tuya.m.security.dealer.code.get								1.0				2019-07-05 14:46:21 - 2019-07-05 14:46:21
-tuya.m.security.device.state.rule.get								1.0				2019-07-05 14:44:44 - 2019-07-05 14:44:44
-tuya.m.security.dealer.get								1.0				2019-05-31 15:28:02 - 1970-01-01 08:00:00
-tuya.m.security.fence.delete								1.0				2019-05-31 15:22:33 - 1970-01-01 08:00:00
-tuya.m.security.get.fence.list								1.0				2019-05-31 15:21:57 - 1970-01-01 08:00:00
-tuya.m.security.white.product.list								1.0				2019-05-31 15:21:19 - 1970-01-01 08:00:00
+tuya.m.security.device.category.list								1.0
+tuya.m.security.operation.log.add								1.0
+tuya.m.security.camera.cover.get								1.0
+tuya.m.security.service.sensor.camera.bind.list								1.0
+tuya.m.security.service.sensor.list								1.0
+tuya.m.security.service.sensor.camera.list								1.0
+tuya.m.security.service.sensor.link								1.0
+tuya.m.tuya.m.tuya.m.test.linkage.rule.query								1.0
+tuya.m.security.geo.fence.home.data.get								2.0
+tuya.m.security.geo.fence.member.join								2.0
+tuya.m.security.geo.fence.member.list.get								2.0
+tuya.m.security.user.mobile.save								2.0
+tuya.m.security.geofencing.switch								2.0
+tuya.m.security.user.mobile.delete								2.0
+tuya.m.security.geo.fence.data.list.get								2.0
+tuya.m.security.geo.fence.region.state.update								2.0
+tuya.m.security.user.mobile.active.set								2.0
+tuya.m.security.geo.fence.service.switch								2.0
+tuya.m.security.geo.fence.mobile.list.get								2.0
+tuya.m.security.geo.fence.data.save								2.0
+tuya.m.security.geofencing.state.get								2.0
+tuya.m.security.geo.fence.service.state.get								2.0
+tuya.open.security.message.send								1.0
+tuya.m.security.user.switch.config.list								1.0
+tuya.m.security.user.switch.config.default								1.0
+tuya.m.security.user.switch.config.update								1.0
+tuya.m.security.user.switch.config.category.list								1.0
+tuya.m.security.user.switch.category.update								1.0
+tuya.m.security.device.reset								1.0
+tuya.m.security.msg.center.favorite								1.0
+tuya.m.security.msg.center.remove								3.0
+tuya.m.security.msg.center.list								4.0
+tuya.m.security.msg.center.update								3.0
+tuya.m.send.message.instance								1.0
+tuya.m.security.user.feedback.code.get								1.0
+tuya.m.security.service.fence.get								1.0
+tuya.m.security.service.fence.geo.get								1.0
+tuya.m.security.service.fence.list.get								1.0
+tuya.m.security.service.fence.geo.switch								1.0
+tuya.m.security.service.fence.member.list.get								1.0
+tuya.m.security.service.fence.device.list.get								1.0
+tuya.m.security.service.fence.toggle								1.0
+tuya.m.security.user.email.code.login								3.0
+tuya.m.security.user.mobile.code.login								3.0
+tuya.m.security.service.fence.process								1.0
+tuya.m.security.service.fence.record								1.0
+tuya.m.security.service.fence.switch								1.0
+tuya.m.security.service.fence.upload								1.0
+tuya.m.security.service.fence.set								1.0
+tuya.m.security.service.fence.delete								1.0
+tuya.m.security.service.detail.get								1.0
+tuya.m.security.service.config.get								1.0
+tuya.m.security.service.camera.bind								1.0
+tuya.m.security.user.active								1.0
+tuya.industry.security.user.active								1.0
+tuya.m.security.delay.time.save								1.0
+tuya.m.security.dealer.bind								1.0
+tuya.m.security.alarm.state.update								1.0
+tuya.m.security.msg.center.list								2.0
+tuya.m.security.msg.center.query								1.0
+tuya.m.security.delay.time.get								1.0
+tuya.device.h.s.default.enable.time								1.0
+tuya.m.security.msg.center.remove								1.0
+tuya.m.security.password.save								1.0
+tuya.m.security.fence.save								1.0
+tuya.m.security.msg.center.update								1.0
+tuya.m.security.password.get								1.0
+tuya.m.security.product.dp.get.lang								1.0
+tuya.m.security.rule.device.get								2.0
+tuya.m.security.product.dp.get.lang								3.0
+tuya.m.security.rule.device.get								1.0
+tuya.m.security.product.dp.get.lang								2.0
+tuya.m.security.rule.device.save								1.0
+tuya.m.security.service.plan.get								1.0
+tuya.industry.security.dealer.code.get								1.0
+tuya.m.security.group.member.process								1.0
+tuya.m.security.location.add								2.0
+tuya.m.security.user.mobile.register								1.0
+tuya.m.security.user.username.register								3.0
+tuya.m.security.user.email.password.login								3.0
+tuya.m.security.user.mobile.passwd.login								3.0
+tuya.m.security.user.email.register								2.0
+tuya.m.security.user.code.login								1.0
+tuya.m.security.group.member.update								3.0
+tuya.m.security.group.member.add								3.0
+tuya.m.security.group.member.add								1.0
+tuya.m.security.group.member.update								1.0
+tuya.m.security.user.username.register								1.0
+tuya.m.security.user.mobile.passwd.login								1.0
+tuya.m.security.user.email.password.login								1.0
+tuya.m.security.user.email.register								1.0
+tuya.device.h.s.boot.config.get								1.0
+tuya.m.security.product.dp.schema.get								1.0
+tuya.m.security.alarm.open.list								1.0
+tuya.m.security.dealer.code.get								1.0
+tuya.m.security.device.state.rule.get								1.0
+tuya.m.security.dealer.get								1.0
+tuya.m.security.fence.delete								1.0
+tuya.m.security.get.fence.list								1.0
+tuya.m.security.white.product.list								1.0
