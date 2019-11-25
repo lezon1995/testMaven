@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        search("断了的弦", 1);
+        search("稻香", 1);
 
 //        search1();
     }
@@ -84,14 +84,16 @@ public class Main {
 
 
     private static void search1(MusicResponse.DataBean.SongBean.ListBean song) throws Exception {
-        String url = "https://u.y.qq.com/cgi-bin/musicu.fcg?data=";
+//        String url = "https://u.y.qq.com/cgi-bin/musicu.fcg?data=";
         Random random = new Random();
         long i1 = random.nextInt(999999999) + 9000000000L;
         String guid = String.valueOf(i1);
         String mid = song.getMid();
+        String url = "http://host811205719.s493.pppf.com.cn/api.php?types=url&source=tencent&id=" + mid + "&br=" + 128;
+        System.out.println(url);
         String s1 = "{\"req_0\":{\"module\":\"vkey.GetVkeyServer\",\"method\":\"CgiGetVkey\",\"param\":{\"guid\":\"" + guid + "\",\"songmid\":[\"" + mid + "\"],\"songtype\":[0],\"uin\":\"0\",\"loginflag\":1,\"platform\":\"20\"}}}";
         String encode = URLEncoder.encode(s1, "UTF-8");
-        url += encode;
+//        url += encode;
         String json = HttpUtil.get(url);
         SongResponse response = JSONObject.parseObject(json, SongResponse.class);
         int vkey = response.getReq_0().getData().getTestfile2g().indexOf("vkey");
@@ -104,18 +106,23 @@ public class Main {
         String url = "";
         if (song.getFile().getSize_flac() > 0) {
             url = "http://183.131.60.16/amobile.music.tc.qq.com/F000" + mid + ".flac?guid=" + guid + "&vkey=" + vkey + "&uin=0&fromtag=58";
-
+            System.out.println(url);
+            String json = HttpUtil.get(url);
+            System.out.println(json);
         }
         if (song.getFile().getSize_320() > 0) {
             url = "http://183.131.60.16/amobile.music.tc.qq.com/M800" + mid + ".mp3?guid=" + guid + "&vkey=" + vkey + "&uin=0&fromtag=58";
-
+            System.out.println(url);
+            String json = HttpUtil.get(url);
+            System.out.println(json);
         }
         if (song.getFile().getSize_128() > 0) {
             url = "http://183.131.60.16/amobile.music.tc.qq.com/M500" + mid + ".mp3?guid=" + guid + "&vkey=" + vkey + "&uin=0&fromtag=58";
+            System.out.println(url);
+            String json = HttpUtil.get(url);
+            System.out.println(json);
+
         }
-        System.out.println(url);
-        String json = HttpUtil.get(url);
-        System.out.println(json);
 
     }
 }

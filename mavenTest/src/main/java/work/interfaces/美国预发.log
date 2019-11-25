@@ -1,10 +1,4 @@
-tuya.m.security.device.category.list								1.0
-tuya.m.security.operation.log.add								1.0
-tuya.m.security.camera.cover.get								1.0
 tuya.m.security.service.sensor.camera.bind.list								1.0
-tuya.m.security.service.sensor.list								1.0
-tuya.m.security.service.sensor.camera.list								1.0
-tuya.m.security.service.sensor.link								1.0
 tuya.m.tuya.m.tuya.m.test.linkage.rule.query								1.0
 tuya.m.security.geo.fence.home.data.get								2.0
 tuya.m.security.geo.fence.member.join								2.0
@@ -20,6 +14,12 @@ tuya.m.security.geo.fence.mobile.list.get								2.0
 tuya.m.security.geo.fence.data.save								2.0
 tuya.m.security.geofencing.state.get								2.0
 tuya.m.security.geo.fence.service.state.get								2.0
+tuya.m.security.device.category.list								1.0
+tuya.m.security.operation.log.add								1.0
+tuya.m.security.camera.cover.get								1.0
+tuya.m.security.service.sensor.list								1.0
+tuya.m.security.service.sensor.camera.list								1.0
+tuya.m.security.service.sensor.link								1.0
 tuya.open.security.message.send								1.0
 tuya.m.security.user.switch.config.list								1.0
 tuya.m.security.user.switch.config.default								1.0

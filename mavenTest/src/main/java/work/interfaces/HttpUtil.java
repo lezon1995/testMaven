@@ -1,10 +1,9 @@
 package work.interfaces;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 
+import com.google.common.io.Files;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -59,6 +58,57 @@ public class HttpUtil {
         }
         return result;
     }
+
+    public static String download(String url, String songName, String author, String downloadPath) {
+        CloseableHttpResponse response = null;
+        BufferedReader in = null;
+        String result = "";
+        String fileName = songName + "_" + author + ".mp3";
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).build();
+            httpGet.setConfig(requestConfig);
+            httpGet.setConfig(requestConfig);
+            httpGet.addHeader("Content-type", "application/json; charset=utf-8");
+            httpGet.setHeader("Accept", "application/json");
+            response = httpClient.execute(httpGet);
+            InputStream content = response.getEntity().getContent();
+            byte[] buffer = read(content);
+            File targetFile = new File(downloadPath + "/" + fileName);
+            Files.write(buffer, targetFile);
+            return "succeed to download " + fileName + "in " + downloadPath;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "failed to download " + fileName + "in " + downloadPath;
+        } finally {
+            try {
+                if (null != response) {
+                    response.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static byte[] read(InputStream inputStream) throws IOException {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int num = inputStream.read(buffer);
+            while (num != -1) {
+                baos.write(buffer, 0, num);
+                num = inputStream.read(buffer);
+            }
+            baos.flush();
+            return baos.toByteArray();
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
+
 
     public static String post(String url, String jsonString, String cookie) {
         CloseableHttpResponse response = null;
