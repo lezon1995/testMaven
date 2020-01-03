@@ -166,6 +166,26 @@
             <version>1.2.47</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.taobao.arthas/arthas-boot -->
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-boot</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-client</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jline/jline -->
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>2.14.5</version>
+        </dependency>
+
+
 
     </dependencies>
 

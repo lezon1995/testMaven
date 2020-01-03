@@ -15,14 +15,14 @@ import java.util.function.Consumer;
  */
 public class Compare {
     public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("/Users/wentworth/Documents/github/testMaven/mavenTest/src/main/java/work/interfaces/美国预发.log")));
+        BufferedReader reader = new BufferedReader(new FileReader(new File("/Users/wentworth/Documents/github/testMaven/mavenTest/src/main/java/work/interfaces/美国线上.log")));
         HashSet<String> americaSet = new HashSet<>();
         String line;
         while ((line = reader.readLine()) != null) {
             americaSet.add(line);
         }
 
-        reader = new BufferedReader(new FileReader(new File("/Users/wentworth/Documents/github/testMaven/mavenTest/src/main/java/work/interfaces/中国预发.log")));
+        reader = new BufferedReader(new FileReader(new File("/Users/wentworth/Documents/github/testMaven/mavenTest/src/main/java/work/interfaces/中国日常.log")));
         HashSet<String> chinaSet = new HashSet<>();
         while ((line = reader.readLine()) != null) {
             chinaSet.add(line);

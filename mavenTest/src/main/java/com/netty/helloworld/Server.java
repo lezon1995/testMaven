@@ -8,6 +8,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+import java.nio.charset.StandardCharsets;
+
 public class Server {
 
 	public static void main(String[] args) throws Exception {
@@ -33,18 +35,19 @@ public class Server {
 						ByteBuf buf = (ByteBuf)msg;
 						byte[] data = new byte[buf.readableBytes()];
 						buf.readBytes(data);
-						String request = new String(data, "utf-8");
+						String request = new String(data, StandardCharsets.UTF_8);
 						System.out.println("Server: " + request);
 						//写给客户端
 						String response = "我是反馈的信息";
-						ctx.writeAndFlush(Unpooled.copiedBuffer("888".getBytes()));
+						ctx.writeAndFlush(Unpooled.copiedBuffer(("server : "+request).getBytes()));
 						//.addListener(ChannelFutureListener.CLOSE);
 					}
 				});
 			}
 		});
 		//绑定指定的端口 进行监听
-		ChannelFuture f = b.bind(8765).sync(); 
+		ChannelFuture f = b.bind(8765).sync();
+		System.out.println("start successful , listening on port 8765 . . .");
 		f.channel().closeFuture().sync();
 		bossGroup.shutdownGracefully();
 		workerGroup.shutdownGracefully();
