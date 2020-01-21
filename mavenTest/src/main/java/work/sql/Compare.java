@@ -25,8 +25,8 @@ public class Compare {
         while ((line = reader.readLine()) != null) {
             westSet.add(line);
         }
-//        Sets.SetView<String> difference = Sets.difference(americaSet, westSet);
-        Sets.SetView<String> difference = Sets.intersection(westSet, americaSet);
+        Sets.SetView<String> difference = Sets.difference(americaSet, westSet);
+//        Sets.SetView<String> difference = Sets.intersection(westSet, americaSet);
         difference.forEach(System.out::println);
         System.out.println(difference.size());
     }

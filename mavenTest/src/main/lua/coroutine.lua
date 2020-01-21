@@ -4,6 +4,7 @@ function printAndAdd(str)
     print(a .. "-" .. str)
     a = a + 1
 end
+
 function f1()
     local i = 1
     while i <= 10 do

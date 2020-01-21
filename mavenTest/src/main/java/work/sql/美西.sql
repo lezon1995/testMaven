@@ -11,7 +11,7 @@ CREATE TABLE `pisces_paladin_alarm_relation_ag` (
   PRIMARY KEY (`id`),
   KEY `idx_alarm_id` (`alarm_id`),
   KEY `idx_alarm_num` (`alarm_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=155003 DEFAULT CHARSET=utf8mb4 COMMENT='AG警报关系表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='AG警报关系表'
 
 CREATE TABLE `pisces_pisces_user_geo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -23,7 +23,7 @@ CREATE TABLE `pisces_pisces_user_geo` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_uid` (`uid`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=31002 DEFAULT CHARSET=utf8mb4 COMMENT='用户GeoService关系表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户GeoService关系表'
 
 CREATE TABLE `pisces_pisces_dealer` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
@@ -38,7 +38,7 @@ CREATE TABLE `pisces_pisces_dealer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_code` (`code`),
   UNIQUE KEY `unq_dealerid` (`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29002 DEFAULT CHARSET=utf8mb4 COMMENT='注册码'
+) ENGINE=InnoDB AUTO_INCREMENT=1010 DEFAULT CHARSET=utf8mb4 COMMENT='注册码'
 
 CREATE TABLE `pisces_pisces_alarm_operation_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -54,12 +54,12 @@ CREATE TABLE `pisces_pisces_alarm_operation_log` (
   `op_value` varchar(32) NOT NULL DEFAULT '' COMMENT '额外信息',
   PRIMARY KEY (`id`),
   KEY `idx_alarmid` (`alarm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=440003 DEFAULT CHARSET=utf8mb4 COMMENT='报警消息操作记录'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='报警消息操作记录'
 
 CREATE TABLE `pisces_pisces_code` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '类型:1服务商 2渠道商',
-  `code` varchar(12) NOT NULL COMMENT '注册码',
+  `code` varchar(12) NOT NULL DEFAULT '' COMMENT '注册码',
   `dealer_or_channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
@@ -68,7 +68,7 @@ CREATE TABLE `pisces_pisces_code` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_code` (`code`),
   UNIQUE KEY `unq_type_dealerorchannel` (`type`,`dealer_or_channel_id`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8mb4 COMMENT='注册码'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='注册码'
 
 CREATE TABLE `pisces_pisces_disturb_time` (
   `id` bigint(13) NOT NULL COMMENT '主键',
@@ -103,10 +103,10 @@ CREATE TABLE `pisces_pisces_custom_rule_template` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定制规则模板'
 
 CREATE TABLE `pisces_pisces_channel` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `channel_id` varchar(32) NOT NULL COMMENT '渠道id',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道id',
   `type` tinyint(2) NOT NULL DEFAULT '2' COMMENT '1:默认渠道,2自定义渠道',
-  `dealer_id` varchar(32) NOT NULL COMMENT '服务商id',
+  `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '渠道名',
   `phone` varchar(24) NOT NULL DEFAULT '' COMMENT '电话',
   `email` varchar(64) NOT NULL DEFAULT '' COMMENT 'email',
@@ -125,7 +125,7 @@ CREATE TABLE `pisces_pisces_channel` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_channel` (`channel_id`),
   KEY `idx_dealer` (`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91002 DEFAULT CHARSET=utf8mb4 COMMENT='渠道商信息'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='渠道商信息'
 
 CREATE TABLE `pisces_pisces_operation_log` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -139,7 +139,7 @@ CREATE TABLE `pisces_pisces_operation_log` (
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_tag_group` (`tag`,`group`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=56002 DEFAULT CHARSET=utf8mb4 COMMENT='pisces操作记录'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='pisces操作记录'
 
 CREATE TABLE `pisces_pisces_message_type_mapping` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -156,7 +156,7 @@ CREATE TABLE `pisces_pisces_message_type_mapping` (
   `is_app_show` int(1) NOT NULL DEFAULT '1' COMMENT 'app是否展示',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_biz_message_key` (`biz_id`,`message_type`,`biz_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=7029 DEFAULT CHARSET=utf8mb4 COMMENT='开关公共配置表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='开关公共配置表'
 
 CREATE TABLE `pisces_pisces_dp` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -173,7 +173,7 @@ CREATE TABLE `pisces_pisces_dp` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_product_group_dpid` (`product_id`,`group`,`dp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2023 DEFAULT CHARSET=utf8mb4 COMMENT='dp配置'
+) ENGINE=InnoDB AUTO_INCREMENT=3007 DEFAULT CHARSET=utf8mb4 COMMENT='dp配置'
 
 CREATE TABLE `pisces_pisces_jupiter_linkage_rule` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -192,7 +192,7 @@ CREATE TABLE `pisces_pisces_jupiter_linkage_rule` (
   PRIMARY KEY (`id`),
   KEY `idx_ruleid` (`rule_id`),
   KEY `idx_deviceid_homeid` (`device_id`,`home_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=97004 DEFAULT CHARSET=utf8mb4 COMMENT='设备联动action表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备联动action表'
 
 CREATE TABLE `pisces_pisces_device_default` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -225,7 +225,7 @@ CREATE TABLE `pisces_pisces_rule` (
   UNIQUE KEY `unq_ruleid` (`rule_id`),
   UNIQUE KEY `unq_homeid_entityid_mode_sourceid` (`home_id`,`entity_id`,`mode`,`source_id`,`status`,`gmt_delete`),
   KEY `idx_entityid` (`entity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=283026 DEFAULT CHARSET=utf8mb4 COMMENT='安防规则'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防规则'
 
 CREATE TABLE `pisces_pisces_common_phone` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -246,7 +246,7 @@ CREATE TABLE `pisces_pisces_common_phone` (
   `is_effective` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否参与围栏边缘判断 0不参与 1参与',
   PRIMARY KEY (`id`),
   KEY `idx_uid_deviceid` (`uid`,`device_id`) USING BTREE COMMENT '针对用户ID和设备ID建立联合索引'
-) ENGINE=InnoDB AUTO_INCREMENT=89003 DEFAULT CHARSET=utf8mb4 COMMENT='用户常用手机'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户常用手机'
 
 CREATE TABLE `pisces_pisces_password` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -260,25 +260,25 @@ CREATE TABLE `pisces_pisces_password` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_home_id_type` (`home_id`,`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=25002 DEFAULT CHARSET=utf8mb4 COMMENT='安防密码'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防密码'
 
 CREATE TABLE `pisces_pisces_alarm` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `alarm_id` varchar(32) NOT NULL DEFAULT '' COMMENT '报警id',
   `home_id` varchar(32) NOT NULL DEFAULT '' COMMENT '家庭id',
   `msg_id` varchar(64) NOT NULL DEFAULT '' COMMENT '报警消息id',
-  `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
-  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道id',
   `state` tinyint(2) NOT NULL DEFAULT '1' COMMENT '流程状态',
   `type` varchar(64) NOT NULL DEFAULT '' COMMENT '报警类型',
-  `env` tinyint(2) NOT NULL DEFAULT '4' COMMENT '环境 1开发 2日常 3预发 4线上',
-  `dps` varchar(256) NOT NULL DEFAULT '' COMMENT '报警dp信息',
-  `biz_id` int(11) NOT NULL DEFAULT '0' COMMENT '业务id',
   `gmt_finish` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '处理时间',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
   `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT '服务商id',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道id',
+  `env` tinyint(2) NOT NULL DEFAULT '4' COMMENT '环境 1开发 2日常 3预发 4线上',
+  `dps` varchar(256) NOT NULL DEFAULT '' COMMENT '报警dp信息',
+  `biz_id` int(11) NOT NULL DEFAULT '0' COMMENT '业务id',
   `extra` varchar(255) NOT NULL DEFAULT '' COMMENT '扩展字段',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_alarmid` (`alarm_id`),
@@ -286,7 +286,7 @@ CREATE TABLE `pisces_pisces_alarm` (
   KEY `idx_homeid` (`home_id`),
   KEY `idx_dealer` (`dealer_id`),
   KEY `idx_channel` (`channel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=406003 DEFAULT CHARSET=utf8mb4 COMMENT='报警'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='报警'
 
 CREATE TABLE `pisces_pisces_fence` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -300,7 +300,7 @@ CREATE TABLE `pisces_pisces_fence` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid` (`home_id`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=44002 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
 
 CREATE TABLE `pisces_pisces_rule_source_tmp` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -318,7 +318,7 @@ CREATE TABLE `pisces_pisces_rule_source_tmp` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_productid_dealerid` (`product_id`,`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
 
 CREATE TABLE `pisces_pisces_ipc_cover` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -331,7 +331,7 @@ CREATE TABLE `pisces_pisces_ipc_cover` (
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_home_id_device_id` (`home_id`,`device_id`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=18002 DEFAULT CHARSET=utf8mb4 COMMENT='摄像头封面图'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='摄像头封面图'
 
 CREATE TABLE `pisces_pisces_time` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -346,7 +346,7 @@ CREATE TABLE `pisces_pisces_time` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_mode_type` (`home_id`,`mode`,`type`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=127005 DEFAULT CHARSET=utf8mb4 COMMENT='安防延迟时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防延迟时间'
 
 CREATE TABLE `pisces_paladin_monitor_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -361,7 +361,7 @@ CREATE TABLE `pisces_paladin_monitor_log` (
   PRIMARY KEY (`id`),
   KEY `idx_tc` (`transmitter_code`),
   KEY `idx_homeid` (`home_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=193011 DEFAULT CHARSET=utf8mb4 COMMENT='监控中心消息日志表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='监控中心消息日志表'
 
 CREATE TABLE `pisces_pisces_fence_home_member_state` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -374,22 +374,22 @@ CREATE TABLE `pisces_pisces_fence_home_member_state` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_uid` (`home_id`,`uid`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=22002 DEFAULT CHARSET=utf8mb4 COMMENT='用户家庭在线状态'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户家庭在线状态'
 
 CREATE TABLE `pisces_pisces_user` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `uid` varchar(64) NOT NULL COMMENT 'uid',
   `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT 'dealer',
-  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
   `biz` int(11) NOT NULL DEFAULT '0' COMMENT '业务线id',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
   `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_uid` (`uid`),
   KEY `idx_dealerid` (`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69002 DEFAULT CHARSET=utf8mb4 COMMENT='安防用户'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防用户'
 
 CREATE TABLE `pisces_paladin_message_ext` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -402,7 +402,7 @@ CREATE TABLE `pisces_paladin_message_ext` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_msgid` (`msg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=151007 DEFAULT CHARSET=utf8mb4 COMMENT='消息扩展表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息扩展表'
 
 CREATE TABLE `pisces_pisces_fence_home_member` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -415,7 +415,7 @@ CREATE TABLE `pisces_pisces_fence_home_member` (
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_uid` (`home_id`,`uid`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=24002 DEFAULT CHARSET=utf8mb4 COMMENT='家庭地理围栏手机'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='家庭地理围栏手机'
 
 CREATE TABLE `pisces_pisces_message` (
   `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -440,7 +440,7 @@ CREATE TABLE `pisces_pisces_message` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_mid` (`msg_id`),
   KEY `idx_src_id_type` (`msg_src_id`,`msg_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=591011 DEFAULT CHARSET=utf8mb4 COMMENT='安防消息中心表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防消息中心表'
 
 CREATE TABLE `pisces_pisces_product_category` (
   `id` bigint(20) NOT NULL COMMENT '主键id',
@@ -493,7 +493,7 @@ CREATE TABLE `pisces_pisces_protocol_state` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_home_gateway_state_id` (`home_id`,`gateway_id`,`state_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=462002 DEFAULT CHARSET=utf8mb4 COMMENT='安防协议上报关系表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防协议上报关系表'
 
 CREATE TABLE `pisces_pisces_gw` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -506,7 +506,7 @@ CREATE TABLE `pisces_pisces_gw` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_device` (`device_id`,`status`,`gmt_delete`),
   KEY `idx_home` (`home_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=222002 DEFAULT CHARSET=utf8mb4 COMMENT='家庭网关'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='家庭网关'
 
 CREATE TABLE `pisces_pisces_area` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -537,7 +537,7 @@ CREATE TABLE `pisces_pisces_rule_source` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_productid_dealerid` (`product_id`,`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4002 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
+) ENGINE=InnoDB AUTO_INCREMENT=6002 DEFAULT CHARSET=utf8mb4 COMMENT='地理围栏'
 
 CREATE TABLE `pisces_pisces_contacts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -551,7 +551,7 @@ CREATE TABLE `pisces_pisces_contacts` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态信息 1-有效，0-无效',
   PRIMARY KEY (`id`),
   KEY `idx_location_id_status` (`home_id`,`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=69003 DEFAULT CHARSET=utf8mb4 COMMENT='安防紧急联系人表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防紧急联系人表'
 
 CREATE TABLE `pisces_paladin_lock_dp` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -582,7 +582,7 @@ CREATE TABLE `pisces_pisces_alarm_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1006 DEFAULT CHARSET=utf8mb4 COMMENT='报警类型'
 
 CREATE TABLE `pisces_paladin_monitor_siteinfo` (
-  `id` bigint(13) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `home_id` varchar(20) NOT NULL DEFAULT '' COMMENT '家庭id',
   `lat` varchar(20) NOT NULL DEFAULT '' COMMENT '维度',
   `lng` varchar(20) NOT NULL DEFAULT '' COMMENT '经度',
@@ -599,13 +599,13 @@ CREATE TABLE `pisces_paladin_monitor_siteinfo` (
   `lang` varchar(20) NOT NULL DEFAULT '' COMMENT '语言',
   `codeword` varchar(32) NOT NULL DEFAULT '' COMMENT '验证码',
   `signature` varchar(20) NOT NULL DEFAULT '' COMMENT '签名',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1-有效 0-无效',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态 1-有效 0-无效',
   `gmt_create` bigint(13) NOT NULL COMMENT '创建时间',
   `gmt_modified` bigint(13) NOT NULL COMMENT '修改时间',
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_home_id` (`home_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135003 DEFAULT CHARSET=utf8mb4 COMMENT='监控中心家庭信息表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='监控中心家庭信息表'
 
 CREATE TABLE `pisces_pisces_base_rule_template` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -642,26 +642,26 @@ CREATE TABLE `pisces_pisces_home` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `home_id` varchar(64) NOT NULL COMMENT 'homeid',
   `dealer_id` varchar(32) NOT NULL DEFAULT '' COMMENT 'dealer',
-  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
   `biz` int(11) NOT NULL DEFAULT '0' COMMENT '业务线id',
-  `service_plan` tinyint(2) NOT NULL DEFAULT '0' COMMENT '服务类型',
-  `admin_user_id` varchar(32) NOT NULL DEFAULT '' COMMENT '管理员',
   `mode` tinyint(2) DEFAULT NULL COMMENT '布防状态',
-  `mc_state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '监控中心设置 0-初始 1-个人 2-专业',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0无效 1有效',
   `gmt_create` bigint(13) unsigned NOT NULL COMMENT '生成时间',
   `gmt_modified` bigint(13) unsigned NOT NULL COMMENT '更新时间',
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `channel_id` varchar(32) NOT NULL DEFAULT '' COMMENT '渠道',
+  `service_plan` tinyint(2) NOT NULL DEFAULT '0' COMMENT '服务类型',
+  `admin_user_id` varchar(32) NOT NULL DEFAULT '' COMMENT '管理员',
+  `mc_state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '监控中心设置 0-初始 1-个人 2-专业',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid` (`home_id`),
   KEY `idx_dealerid` (`dealer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=204003 DEFAULT CHARSET=utf8mb4 COMMENT='安防家庭'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防家庭'
 
 CREATE TABLE `pisces_pisces_device_operation` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `device_id` varchar(32) NOT NULL DEFAULT '' COMMENT 'deviceid',
   `operation_type` int(1) NOT NULL DEFAULT '0' COMMENT '类型,1:升级,2:重启',
-  `operation_code` varchar(64) NOT NULL DEFAULT '' COMMENT '操作批次',
+  `operation_code` varchar(16) NOT NULL DEFAULT '' COMMENT '操作批次',
   `operation_status` int(1) NOT NULL DEFAULT '0' COMMENT '升级状态,1:升级中,2:成功,3:失败',
   `operation_user` varchar(32) NOT NULL DEFAULT '' COMMENT '操作人',
   `operation_desc` varchar(32) NOT NULL DEFAULT '' COMMENT '描述',
@@ -672,7 +672,7 @@ CREATE TABLE `pisces_pisces_device_operation` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `idx_device` (`device_id`,`operation_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=45002 DEFAULT CHARSET=utf8mb4 COMMENT='固件升级记录表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='固件升级记录表'
 
 CREATE TABLE `pisces_pisces_user_phone` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -688,7 +688,7 @@ CREATE TABLE `pisces_pisces_user_phone` (
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_uid_uuid` (`uid`,`uuid`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=130002 DEFAULT CHARSET=utf8mb4 COMMENT='用户常用手机'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户常用手机'
 
 CREATE TABLE `pisces_pisces_meal_statistics` (
   `id` bigint(10) NOT NULL COMMENT '主键id',
@@ -716,7 +716,7 @@ CREATE TABLE `pisces_pisces_notification_phone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户自定义手机号配置表'
 
 CREATE TABLE `pisces_pisces_schema` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `product_id` varchar(32) NOT NULL DEFAULT '' COMMENT '产品id',
   `dp` varchar(12) NOT NULL COMMENT 'dp',
   `dp_type` varchar(12) NOT NULL DEFAULT '' COMMENT 'dp类型',
@@ -728,7 +728,7 @@ CREATE TABLE `pisces_pisces_schema` (
   `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_product_dp` (`product_id`,`dp`,`status`,`gmt_delete`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COMMENT='schema配置'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='schema配置'
 
 CREATE TABLE `pisces_pisces_device` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -743,7 +743,7 @@ CREATE TABLE `pisces_pisces_device` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_homeid_mode_deviceid` (`home_id`,`mode`,`device_id`,`status`,`gmt_delete`),
   KEY `idx_deviceid` (`device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=278022 DEFAULT CHARSET=utf8mb4 COMMENT='安防设备'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='安防设备'
 
 CREATE TABLE `pisces_pisces_reminder` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
@@ -755,8 +755,8 @@ CREATE TABLE `pisces_pisces_reminder` (
   `gmt_create` bigint(13) NOT NULL COMMENT '生成时间',
   `gmt_modified` bigint(13) NOT NULL COMMENT '更新时间',
   `gmt_delete` bigint(13) NOT NULL DEFAULT '0' COMMENT '删除时间',
-  `time_zone` varchar(32) NOT NULL DEFAULT '' COMMENT '时区id',
   `enable` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0:禁用 1启用',
+  `time_zone` varchar(32) NOT NULL DEFAULT '' COMMENT '时区id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7003 DEFAULT CHARSET=utf8mb4 COMMENT='arm reminder配置表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='arm reminder配置表'
 

@@ -1,7 +1,7 @@
 local dkjson = require("dkjson")
 local tableUtil = require("tableUtil")
 
---lua对象到字符串  
+--lua对象到字符串
 local obj = {
     id = 1,
     name = "zhangsan",

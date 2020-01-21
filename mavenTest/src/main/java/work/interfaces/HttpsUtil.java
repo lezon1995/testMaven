@@ -140,11 +140,11 @@ public class HttpsUtil {
                     return false;
                 }
                 HttpClientContext clientContext = HttpClientContext.adapt(context);
-                HttpRequest request = clientContext.getRequest();
-                boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
-                if (idempotent) {
-                    return true;
-                }
+//                HttpRequest request = clientContext.getRequest();
+//                boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
+//                if (idempotent) {
+//                    return true;
+//                }
                 return false;
             }
         };
