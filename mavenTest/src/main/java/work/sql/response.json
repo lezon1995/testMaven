@@ -1,0 +1,44 @@
+{
+  "status":200,
+  "message":"",
+  "data":{
+    "tablestruct":"CREATE TABLE `pisces_paladin_door_lock_dp` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `product_id` varchar(64) NOT NULL DEFAULT '' COMMENT '门锁产品id',
+    `lock_point` varchar(20) NOT NULL DEFAULT '' COMMENT '开锁关锁DP点',
+    `value_type` varchar(10) NOT NULL DEFAULT 'bool' COMMENT 'DP点数据类型',
+    `open_value` varchar(64) NOT NULL DEFAULT '' COMMENT '开锁DP数据',
+    `close_value` varchar(64) NOT NULL DEFAULT '' COMMENT '关锁DP数据',
+    `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '有效状态',
+    `gmt_create` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+    `gmt_modified` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+    `gmt_delete` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `unq_pid` (`product_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='门锁的开锁/关锁DP信息'",
+    "tablefileds":[
+      "`id`",
+      "`product_id`",
+      "`lock_point`",
+      "`value_type`",
+      "`open_value`",
+      "`close_value`",
+      "`status`",
+      "`gmt_create`",
+      "`gmt_modified`",
+      "`gmt_delete`"
+    ],
+    "tablefiledscomment":[
+      "主键",
+      "门锁产品id",
+      "开锁关锁DP点",
+      "DP点数据类型",
+      "开锁DP数据",
+      "关锁DP数据",
+      "有效状态",
+      "创建时间",
+      "修改时间",
+      "删除时间"
+    ]
+  }
+}

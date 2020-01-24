@@ -1,0 +1,30 @@
+1: "pisces_paladin_alarm_relation_ag"
+2: "pisces_paladin_door_lock_dp"
+3: "pisces_paladin_lock_dp"
+4: "pisces_paladin_message_ext"
+5: "pisces_paladin_monitor_log"
+6: "pisces_pisces_alarm"
+7: "pisces_pisces_alarm_operation_log"
+8: "pisces_pisces_alarm_type"
+9: "pisces_pisces_area"
+10: "pisces_pisces_contacts"
+11: "pisces_pisces_dealer"
+12: "pisces_pisces_device"
+13: "pisces_pisces_device_default"
+14: "pisces_pisces_fence"
+15: "pisces_pisces_gw"
+16: "pisces_pisces_home"
+17: "pisces_pisces_message"
+18: "pisces_pisces_password"
+19: "pisces_pisces_protocol_state"
+20: "pisces_pisces_rule"
+21: "pisces_pisces_rule_source"
+22: "pisces_pisces_schema"
+23: "pisces_pisces_time"
+24: "pisces_pisces_user"
+
+add
+pisces_paladin_monitor_siteinfo
+pisces_pisces_channel
+pisces_pisces_code
+pisces_pisces_gw_tmp

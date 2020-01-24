@@ -59,9 +59,7 @@ public class DistributedLock {
                 System.out.println(Thread.currentThread().getName() + "-> 成功获得锁[" + lockId + "]");
             }
             return true;
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
         return false;
@@ -74,9 +72,7 @@ public class DistributedLock {
             System.out.println("节点[" + lockId + "]成功被删除");
             zooKeeper.delete(lockId, -1);
             return true;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (KeeperException e) {
+        } catch (InterruptedException | KeeperException e) {
             e.printStackTrace();
         }
         return false;

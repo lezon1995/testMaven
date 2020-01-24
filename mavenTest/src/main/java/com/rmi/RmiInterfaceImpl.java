@@ -16,7 +16,7 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
      * created using the {@link } class.
      *
      * @throws RemoteException if failed to export object
-     * @since JDK1.1
+     * @since JDK
      */
     protected RmiInterfaceImpl() throws RemoteException {
         super();
@@ -29,13 +29,15 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
     }
 
     @Override
-    public void writeFile(byte[] data) throws RemoteException {
-        try {
-            FileOutputStream outputStream = new FileOutputStream(new File("E:/1.jpg"));
+    public void writeFile(byte[] data) {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(new File("E:/1.jpg"));
+        ) {
+
             outputStream.write(data);
             outputStream.flush();
             System.out.println("写成功");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

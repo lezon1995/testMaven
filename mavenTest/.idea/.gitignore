@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 # Default ignored files
 /workspace.xml
+=======
+
+# Default ignored files
+/workspace.xml
+*.class
+>>>>>>> 052a29caaa896022a22f548701422ea95b18a5b0

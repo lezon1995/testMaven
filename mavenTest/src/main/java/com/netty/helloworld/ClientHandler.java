@@ -5,6 +5,8 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.ReferenceCountUtil;
 
+import java.nio.charset.StandardCharsets;
+
 public class ClientHandler extends ChannelHandlerAdapter {
 
 	@Override
@@ -14,10 +16,8 @@ public class ClientHandler extends ChannelHandlerAdapter {
 			ByteBuf buf = (ByteBuf)msg;
 			byte[] data = new byte[buf.readableBytes()];
 			buf.readBytes(data);
-			String request = new String(data, "utf-8");
+			String request = new String(data, StandardCharsets.UTF_8);
 			System.out.println("Client: " + request);
-			
-			
 		} finally {
 			ReferenceCountUtil.release(msg);
 		}
