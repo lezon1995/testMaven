@@ -10,14 +10,14 @@ import java.util.Random;
  */
 public class SortUtil {
     public static void main(String[] args) {
-        Random random = new Random();
-        int[] ints = new int[1000000];
-        for (int i = 0; i < 1000000; i++) {
-            ints[i] = random.nextInt(1000000);
-        }
+//        Random random = new Random();
+//        int[] ints = new int[1000000];
+//        for (int i = 0; i < 1000000; i++) {
+//            ints[i] = random.nextInt(1000000);
+//        }
 //        int[] ints = new int[]{5, 5, 4, 4, 3, 3, 2, 2, 9, 9, 8, 8, 6, 6, 7, 7};
-//        int[] ints = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-        int[] temp = new int[1000000];
+        int[] ints = new int[]{9,2,7,4,5,0,6,3,8,1,9,2,7,4,5,0,6,3,8,1};
+        int[] temp = new int[20];
         long start = System.currentTimeMillis();
 //        int[] ints1 = shellSortBySwap(ints);
         mergeSort(ints, 0, ints.length - 1, temp);

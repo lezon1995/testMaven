@@ -53,6 +53,21 @@ class Node {
         }
     }
 
+//    public void preOrderUnRecursive1() {
+//        Stack<Node> stack = new Stack<>();
+//        Node current = this;
+//        while (current != null || !stack.isEmpty()) {
+//            while (current != null) {
+//                System.out.println(current);
+//                current = current.left;
+//                stack.push(current);
+//            }
+//            if (!stack.isEmpty()) {
+//                current = stack.pop();
+//                current = current.right;
+//            }
+//        }
+//    }
 
     /**
      * 前序遍历查找 mid->left->right

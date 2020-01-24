@@ -10,12 +10,12 @@ import java.util.Map;
  */
 public class InvokerHandler {
 
-    public static Map<Integer, Map<Integer, Invoker>> invokers = new HashMap<Integer, Map<Integer, Invoker>>();
+    public static Map<Integer, Map<Integer, Invoker>> invokers = new HashMap<>();
 
     public static void addInvoker(int module, int cmd, Invoker invoker) {
         Map<Integer, Invoker> map = invokers.get(module);
         if (map == null) {
-            map = new HashMap<Integer, Invoker>();
+            map = new HashMap<>();
             invokers.put(module, map);
         }
         map.put(cmd, invoker);

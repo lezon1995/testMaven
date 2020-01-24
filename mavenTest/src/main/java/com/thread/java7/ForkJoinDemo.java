@@ -14,8 +14,8 @@ public class ForkJoinDemo {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.printf("当前公用ForkJoin 线程池 并行数量: %d\n", ForkJoinPool.getCommonPoolParallelism());
-        System.out.printf("当前CPU 处理器数量: %d\n", Runtime.getRuntime().availableProcessors());
+//        System.out.printf("当前公用ForkJoin 线程池 并行数量: %d\n", ForkJoinPool.getCommonPoolParallelism());
+//        System.out.printf("当前CPU 处理器数量: %d\n", Runtime.getRuntime().availableProcessors());
         ForkJoinPool forkJoinPool = new ForkJoinPool();
 
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);

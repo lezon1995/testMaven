@@ -9,6 +9,7 @@ public class ReflectTest {
 
         System.out.println("----------------------------------");
         System.out.println("下面是测试Class.forName的效果");
+        //使用class.forname加载类会调用类的静态代码块，和静态变量赋值的方法
         testForName(wholeNameLine, wholeNamePoint);
     }
 

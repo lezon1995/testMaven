@@ -30,7 +30,7 @@ public class SeizeBonus {
 
     public static void main(String[] args) {
         int sum = 0;
-        List<Integer> amountList = divideRedPackage(1000, 10);
+        List<Integer> amountList = divideRedPackage(100000, 10);
         for (Integer amount : amountList) {
             sum += amount;
             System.out.println("抢到金额：" + new BigDecimal(amount).divide(new BigDecimal(100)));

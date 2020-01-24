@@ -1,10 +1,15 @@
 package com.design_pattern.consumer_producer;
 
 import java.util.Random;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ProductTest {
 
     private static Random random = new Random();
+    private static Lock lock = new ReentrantLock();
+    private static Condition condition = lock.newCondition();
 
     public static void main(String[] args) {
         Clerk clerk = new Clerk();
@@ -21,36 +26,38 @@ public class ProductTest {
 
         private int PRODUCT = 0;
 
-        public synchronized void addProduct() {
-            if (this.PRODUCT >= MAX_PRODUCT) {
-                try {
-                    wait();
+        public void addProduct() {
+            try {
+                lock.lock();
+                if (this.PRODUCT >= MAX_PRODUCT) {
                     System.out.println("产品已满,请稍候再生产");
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    condition.await();
                 }
-                return;
+                this.PRODUCT++;
+                System.out.println("生产者生产了第" + this.PRODUCT + "个产品");
+                condition.signalAll();
+            } catch (InterruptedException e) {
+
+            } finally {
+                lock.unlock();
             }
-            this.PRODUCT++;
-            System.out.println("生产者生产了第" + this.PRODUCT + "个产品");
-            notifyAll();
         }
 
-        public synchronized void getProduct() {
-            if (this.PRODUCT <= MIN_PRODUCT) {
-                try {
-                    wait();
+        public void getProduct() {
+            try {
+                lock.lock();
+                if (this.PRODUCT <= MIN_PRODUCT) {
                     System.out.println("产品处于缺货状态");
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    condition.await();
                 }
-                return;
+                System.out.println("消费者消费了第" + this.PRODUCT + "个产品");
+                this.PRODUCT--;
+                condition.signalAll();
+            } catch (InterruptedException e) {
+
+            } finally {
+                lock.unlock();
             }
-            System.out.println("消费者消费了第" + this.PRODUCT + "个产品");
-            this.PRODUCT--;
-            notifyAll();
         }
     }
 
@@ -63,13 +70,11 @@ public class ProductTest {
 
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             System.out.println("生产者开始生产产品");
             while (true) {
                 try {
-                    Thread.sleep(random.nextInt(2000));
+                    Thread.sleep(random.nextInt(1000));
                 } catch (Exception e) {
-                    // TODO: handle exception
                 }
                 clerk.addProduct();
             }
@@ -87,13 +92,11 @@ public class ProductTest {
 
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             System.out.println("消费者开始消费产品");
             while (true) {
                 try {
                     Thread.sleep(random.nextInt(2000));
                 } catch (Exception e) {
-                    // TODO: handle exception
                 }
                 clerk.getProduct();
             }

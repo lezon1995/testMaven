@@ -1,5 +1,7 @@
 package com.hash;
 
+import com.google.common.hash.HashCode;
+import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.StandardCharsets;
@@ -153,10 +155,13 @@ public class ConsistentHash<T> {
 
 
     public static void main(String[] args) {
-        long s = md5HashingAlg("123");
-        long ss = fnv1HashingAlg("123");
-        System.out.println(s);
-        System.out.println(ss);
+//        long s = md5HashingAlg("123");
+//        long ss = fnv1HashingAlg("123");
+//        System.out.println(s);
+//        System.out.println(ss);
+        HashFunction hashFunction = Hashing.murmur3_32();
+        HashCode mic = hashFunction.hashString("mic", StandardCharsets.UTF_8);
+        System.out.println(mic.asInt());
     }
     /**
      * Hash算法对象，用于自定义hash算法
