@@ -172,11 +172,7 @@
             <artifactId>arthas-boot</artifactId>
             <version>3.1.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.taobao.arthas</groupId>
-            <artifactId>arthas-client</artifactId>
-            <version>3.1.5</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/jline/jline -->
         <dependency>
