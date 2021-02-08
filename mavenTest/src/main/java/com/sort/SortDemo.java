@@ -7,12 +7,14 @@ import java.util.Arrays;
  * @date 2019/7/27 10:04
  */
 public class SortDemo {
+    static int[] ints = {9, 1, 3, 7, 8, 2, 6, 5, 4};
+    static StringBuilder str = new StringBuilder();
 
     public static void main(String[] args) {
-//        int[] ints = {9, 1, 3, 7, 8, 2, 6, 5, 4};
-        int[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+//        int[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] temp = new int[ints.length];
 //        heapSort(ints);
+        System.out.println(Arrays.toString(ints));
         quickSort(ints, 0, ints.length - 1);
 //        mergeSort(ints, 0, ints.length - 1, temp);
         System.out.println(Arrays.toString(ints));
@@ -79,7 +81,7 @@ public class SortDemo {
             current = array[i];
             int preIndex = i - 1;
             while (preIndex >= 0 && array[preIndex] > current) {
-                array[preIndex + 1] = array[preIndex];
+                array[i] = array[preIndex];
                 preIndex--;
             }
             array[preIndex + 1] = current;
@@ -120,42 +122,44 @@ public class SortDemo {
      * 每次取一个中值，可以是数组中任意一个数，一般取中位数
      * 然后让中值左边的数全部小于中值，右边的数全部大于中值
      *
-     * @param array
+     * @param arr
      */
-    public static void quickSort(int[] array, int left, int right) {
-        int l = left;
-        int r = right;
-        int pivot = array[(left + right) / 2];
-        int temp;
-        while (l < r) {
-            if (array[l] < pivot) {
-                l++;
-            }
-            if (array[r] > pivot) {
-                r--;
-            }
-            if (l > r) {
-                break;
-            }
-            temp = array[l];
-            array[l] = array[r];
-            array[r] = temp;
-            if (array[l] == pivot) {
-                l++;
-            }
-            if (array[r] == pivot) {
-                r--;
-            }
-        }
-        if (left < l) {
-            quickSort(array, left, r);
-        }
-        if (right > r) {
-            quickSort(array, l, right);
+    private static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            str.append("----");
+            // 找寻基准数据的正确索引
+            int index = getIndex(arr, low, high);
+            // 进行迭代对index之前和之后的数组进行相同的操作使整个数组变成有序
+            //quickSort(arr, 0, index - 1); 之前的版本，这种姿势有很大的性能问题，谢谢大家的建议
+            quickSort(arr, low, index - 1);
+            quickSort(arr, index + 1, high);
         }
 
     }
 
+    private static int getIndex(int[] arr, int low, int high) {
+        // 取最左边的数作为基准数
+        int pivot = arr[low];
+        while (low < high) {
+            // 当队尾的元素大于等于基准数据时,向前挪动high指针
+            while (low < high && arr[high] >= pivot) {
+                high--;
+            }
+            // 如果队尾元素小于tmp了,需要将其赋值给low
+            arr[low] = arr[high];
+            // 当队首元素小于等于tmp时,向前挪动low指针
+            while (low < high && arr[low] <= pivot) {
+                low++;
+            }
+            // 当队首元素大于tmp时,需要将其赋值给high
+            arr[high] = arr[low];
+        }
+        // 跳出循环时low和high相等,此时的low或high就是tmp的正确索引位置
+        // 由原理部分可以很清楚的知道low位置的值并不是tmp,所以需要将tmp赋值给arr[low]
+        arr[low] = pivot;
+        System.out.println(str + Arrays.toString(ints));
+        return low; // 返回tmp的正确位置
+    }
 
     public static void mergeSort(int[] array, int left, int right, int[] temp) {
         if (left < right) {
@@ -165,7 +169,6 @@ public class SortDemo {
             mergeSort(array, mid + 1, right, temp);
             //合并
             merge(array, left, mid, right, temp);
-
         }
     }
 
@@ -173,35 +176,29 @@ public class SortDemo {
         int l1 = left;
         int l2 = mid + 1;
         int t = 0;
+
         //1.将两个数组中从小到大的顺序加入到temp数组中，等其中一个数组加完了，总会有另一个数组没有加完
         while (l1 <= mid && l2 <= right) {
             if (array[l1] <= array[l2]) {
-                temp[t] = array[l1];
-                l1++;
+                temp[t++] = array[l1++];
             } else {
-                temp[t] = array[l2];
-                l2++;
+                temp[t++] = array[l2++];
             }
-            t++;
         }
+
         //2.将另外一个数组中的元素加入到temp数组中
         while (l1 <= mid) {
-            temp[t] = array[l1];
-            t++;
-            l1++;
+            temp[t++] = array[l1++];
         }
         while (l2 <= right) {
-            temp[t] = array[l2];
-            t++;
-            l2++;
+            temp[t++] = array[l2++];
         }
+
         //3.将temp数组中的元素复制到array原数组中
         t = 0;
         int tempLeft = left;
         while (tempLeft <= right) {
-            array[tempLeft] = temp[t];
-            t++;
-            tempLeft++;
+            array[tempLeft++] = temp[t++];
         }
 
     }

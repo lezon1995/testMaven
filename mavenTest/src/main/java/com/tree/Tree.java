@@ -6,6 +6,7 @@ import java.util.Queue;
 public class Tree {
     private Node root;
     Queue<Node> queue;
+
     public Tree() {
         this.root = null;
         queue = new LinkedList<>();

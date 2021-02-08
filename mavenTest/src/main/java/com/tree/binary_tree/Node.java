@@ -1,6 +1,7 @@
 package com.tree.binary_tree;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 class Node {
@@ -157,7 +158,7 @@ class Node {
     }
 
     // 后序遍历非递归
-    public void postOrderNon() {
+    public void postOrderUnRecursive() {
         //用于存放节点的栈
         Stack<Node> nodeStack = new Stack<>();
         //用于存放节点是否准备好被访问的栈，跟nodeStack中元元素一一对应
@@ -208,10 +209,14 @@ class Node {
         return result;
     }
 
+    /**
+     * 层序遍历(广度优先思想)
+     */
     public void levelTraverse() {
         Node root = this;
-        LinkedList<Node> queue = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
+
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             System.out.println(node);
@@ -224,6 +229,30 @@ class Node {
         }
     }
 
+    /**
+     * 求树的最大深度
+     *
+     * @return 最大深度
+     */
+    public int maxDepth() {
+        Node curRoot = this;
+
+        int maxDepth;
+        int maxDepthL = 0;
+        int maxDepthR = 0;
+
+        if (curRoot.left != null) {
+            maxDepthL = curRoot.left.maxDepth();
+        }
+
+        if (curRoot.right != null) {
+            maxDepthR = curRoot.right.maxDepth();
+        }
+
+        maxDepth = Math.max(maxDepthL, maxDepthR) + 1;
+        return maxDepth;
+    }
+
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -233,14 +262,20 @@ class Node {
         Node root_right_left = new Node(6);
         Node root_left_left = new Node(4);
         Node root_left_right = new Node(5);
+        Node root_left_right_right = new Node(5);
+        Node root_left_right_right_left = new Node(5);
+
         root.left = root_left;
         root.right = root_right;
         root_right.right = root_right_right;
         root_right.left = root_right_left;
         root_left.left = root_left_left;
         root_left.right = root_left_right;
+        root_left_right.right = root_left_right_right;
+        root_left_right_right.left = root_left_right_right_left;
 //        root.postOrder();
-        root.postOrderNon();
+        root.postOrderUnRecursive();
 
+        System.out.println(root.maxDepth());
     }
 }

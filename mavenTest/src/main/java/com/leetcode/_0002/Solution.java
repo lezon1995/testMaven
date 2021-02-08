@@ -1,5 +1,7 @@
 package com.leetcode._0002;
 
+import com.algorithm.leetcode.ListNode;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,20 +15,6 @@ import java.util.List;
  * }
  */
 public class Solution {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return val +
-                    ", " + next;
-        }
-    }
 
     public static void main(String[] args) {
         ListNode node = new ListNode(9);

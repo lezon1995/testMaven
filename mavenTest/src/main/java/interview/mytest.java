@@ -1,7 +1,5 @@
 package interview;
 
-import java.util.ArrayList;
-
 public class mytest {
 
 
