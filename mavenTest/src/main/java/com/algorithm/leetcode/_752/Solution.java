@@ -109,6 +109,7 @@ class Solution {
 
 
     private String plusOne(String str, int index) {
+
         char[] chars = str.toCharArray();
         if (chars[index] == '9') {
             chars[index] = '0';
